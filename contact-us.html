@@ -7,45 +7,40 @@
     <title>Lux Auto - Зв'язатися з нами</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;
+*{margin:0;padding:0;box-sizing:border-box}
+html, body{
+    overflow-x: hidden;
+    width: 100%;
 }
-html {
-  scroll-behavior: smooth; /*плавний скрол */
+body{
+font-family:Arial,sans-serif;
+background:#f5f5f5;
+color:#222;
 }
 
-body{
-   font-family:Arial,sans-serif;
-   background:#f5f5f5;
-   color:#222;
-}
 .header{
-   background:#1b1b1b;
-   color:#fff;
-   padding:12px 20px;
-   display:flex;
-   align-items:center;
-   position:relative;
+    background:#1b1b1b;
+    color:#fff;
+    padding:12px 20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    font-weight: bold;
+    height: 60px;
 }
-.header-text{
-   position:absolute;
-   left:50%;
-   transform:translateX(-50%);
+.header-center{
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
 }
 .header img{/* header image */
-    width: 3%;   
-}   
-.header-btn{/* Header Low Button */
-    display: flex;
-    justify-content: space-evenly;
-    gap: 30px;
+    width: 60px;   
+}  
+.header a{
+color:white;
+text-decoration:none;
+margin-left:25px;
 }
-
-
-.header-btn a{/* Header Low Button a */
-    text-decoration: none; /* прибирає риску */
-    color: rgb(206, 206, 206);
-} 
-
 
 
 
@@ -96,11 +91,11 @@ body{
 .badge3{
     display:inline-block;
     background:#f8cb00;
-    padding:10px 13px ;
+    padding: 4px 13px ;
     border-radius:9px;
     font-weight:bold;
     margin-top: 15px;
-    height: 40px;
+    height: 45px;
     width: 85%;
     text-align: center;
 }
@@ -179,7 +174,6 @@ gap: 13px;
    justify-content:center;
    position: relative;
    width: 100%;
-   min-width: 1500px;
    flex-wrap: wrap;
    gap: 40px;
 }
@@ -198,7 +192,7 @@ gap: 13px;
     justify-content:center;
     padding: 10px;
     box-shadow: 1px 1px 5px black;
-    width: 25%;
+    width:280px;
     height: 300px;
     flex-wrap: wrap;
     text-align: center;
@@ -298,6 +292,142 @@ footer{
     width: 25%;
     margin: auto;
 }
+
+@media (max-width:768px){
+
+/* Header */
+.header{
+    flex-direction:column;
+    height:auto;
+    padding:10px;
+    gap:10px;
+}
+
+.header-center{
+    position:static;
+    transform:none;
+}
+
+.header img{
+    width:45px;
+}
+
+.header div{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:10px;
+}
+
+.header a{
+    margin:0;
+    font-size:14px;
+}
+
+/* Hero */
+.catalog-hero{
+    padding:40px 15px;
+}
+
+.catalog-hero h1{
+    font-size:34px;
+}
+
+.catalog-hero p{
+    font-size:16px;
+}
+
+/* Карточки контактів */
+.cards{
+    min-width:0;
+    width:100%;
+    flex-direction:column;
+    gap:20px;
+    padding:0 10px;
+}
+
+.cards-info{
+    width:100%;
+    height:auto;
+    margin:0;
+}
+
+.badge2{
+    width:100%;
+    height:auto;
+    margin:0;
+    padding:15px;
+}
+
+.badge2 h4{
+    margin-top:0;
+}
+
+/* QR */
+.phone-card{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:10px;
+}
+
+.phone-card img{
+    width:80px;
+}
+
+/* Карта */
+.map{
+    padding:0 10px;
+}
+
+.map img{
+    width:100%;
+    max-width:100%;
+}
+
+/* Блок допомоги */
+.card2{
+    padding:0 10px;
+}
+
+.card2-info{
+    width:100%;
+    height:auto;
+}
+
+.badge3{
+    width:100%;
+    height:auto;
+    padding:15px;
+}
+
+.badge3 h4{
+    margin-top:0;
+}
+
+.help-car{
+    padding:20px 10px;
+}
+
+.help-car h3{
+    font-size:18px;
+}
+
+/* Кнопки */
+.btn,
+.btn2{
+    width:100%;
+}
+
+/* Footer */
+.info-footer{
+    width:100%;
+    flex-direction:column;
+    gap:15px;
+}
+
+}
+
 </style>
 
 
@@ -306,20 +436,14 @@ footer{
     
 
 <div class="header">
-  <img src="images/logo/LuxAutoImg2.png" alt="LuxAuto Logo">
-
-  <div id="header-text" class="header-text">
-      <h2>Lux Auto</h2>
-  </div>
-
-
-<div class="header-btn" style="margin-left:auto" ><!-- Header Text -->
-    <div class="header-Index"><a href="index.html"><h4>На головну</h4></a></div>
-    <div class="header-aboutus"><a href="aboutus.html"><h4>Про нас</h4></a></div>
-    <div class="header-services"><a href="services.html"><h4>Наші послуги</h4></a></div>
-    </div>
+<img src="images/logo/LuxAutoImg3.png" alt="LuxAuto Logo">
+<h2 class="header-center">Lux Auto</h2>
+<div>
+<a href="aboutus.html">Про нас</a>
+<a href="contact-us.html">Зв'яжіться з нами</a>
+<a href="services.html">Сервіс</a>
 </div>
-
+</div>
 
 
 
@@ -349,7 +473,7 @@ footer{
 
 
 
-<selection  id="#cards" class="cards">
+<section  id="#cards" class="cards">
 
 <div id="cards-info" class="cards-info">
 <div class="badge2">
@@ -398,7 +522,7 @@ footer{
  
 </div>
 </div>
-</selection>
+</section>
 
 
 
