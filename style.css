@@ -96,14 +96,15 @@ padding:5px 9px;
 }
 
 .car-card{
-    width:100% !important;
-    margin:0 !important;
+    width:94% !important;
+    margin: 5px !important;
 }
 
 .car-card img{
-    width: 70%;
-    height:100px;
+    width:100% !important;
+    height:220px !important;
     object-fit:cover;
+}
 }
 
 .car-title h3{
@@ -141,7 +142,7 @@ padding:5px 9px;
     gap:10px;
 }
 
-}
+
 
 
 
