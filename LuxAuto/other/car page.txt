@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link rel="icon" type="image/x-icon" href="../../images/logo/LuxAutoImg2.png">
+<title>Lux Auto - ************</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+font-family:Arial,sans-serif;
+background:#f5f5f5;
+color:#222;
+}
+
+.header{
+background:#1b1b1b;
+color:#fff;
+padding:12px 20px;
+height: 65px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+.header img{/* header image */
+    width: 60px;   
+}  
+.header-text{
+   position:absolute;
+   left:50%;
+   transform:translateX(-50%);
+}
+.header a{
+color:white;
+text-decoration:none;
+margin-left:25px;
+}
+
+.container{
+max-width:1400px;
+margin:auto;
+padding:30px;
+}
+
+.top{
+display:grid;
+grid-template-columns:1.2fr 0.8fr;
+gap:40px;
+}
+
+.gallery{
+position:relative;
+}
+
+.gallery img{
+width:100%;
+border-radius:15px;
+}
+
+.prev,.next{
+position:absolute;
+top:50%;
+transform:translateY(-50%);
+background:#111;
+color:white;
+border:none;
+padding:15px 20px;
+font-size:24px;
+cursor:pointer;
+border-radius:10px;
+}
+
+.prev{left:10px;}
+.next{right:10px;}
+
+.thumbs{
+display:flex;
+gap:10px;
+margin-top:12px;
+}
+
+.thumbs img{
+width:120px;
+height:80px;
+object-fit:cover;
+cursor:pointer;
+border-radius:10px;
+}
+
+.price{
+font-size:42px;
+color:green;
+font-weight:bold;
+margin-bottom:15px;
+}
+
+.specs{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:15px;
+margin-top:25px;
+}
+
+.spec{
+background:white;
+padding:15px;
+border-radius:12px;
+box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+
+.section{
+background:white;
+padding:25px;
+margin-top:30px;
+border-radius:15px;
+box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+
+.section h2{
+margin-bottom:15px;
+}
+
+.features{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:12px;
+}
+
+.feature{
+background:#f0f0f0;
+padding:12px;
+border-radius:10px;
+}
+
+.btn{
+    display:inline-block;
+    background:#1b1b1b;
+    color:#fff;
+    padding:14px 22px;
+    border-radius:10px;
+    text-decoration:none;
+    margin-top:20px;
+    border:2px solid transparent;
+    transition: 0.3s;
+    text-align: center;
+    font-weight: 100;
+}
+
+.btn:hover{
+    background:#f5f5f5;
+    border-color:#000;
+    color:#1b1b1b;
+}
+
+footer{
+margin-top:50px;
+background:#111;
+color:white;
+padding:30px;
+text-align:center;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+<img src="../../images/logo/LuxAutoImg2.png" alt="LuxAuto Logo">
+<h2>Lux Auto</h2>
+<div>
+<a href="../../index.html">На головну</a>
+<a href="../../aboutus.html">Про нас</a>
+<a href="../../contact-us.html">Контакти</a>
+</div>
+</div>
+
+<div class="container">
+
+<div class="top">
+
+<div>
+<div class="gallery">
+<button class="prev" onclick="changeSlide(-1)">❮</button>
+<img id="mainImage" src="*****.jpg">
+<button class="next" onclick="changeSlide(1)">❯</button>
+</div>
+
+<div class="thumbs">
+<img src="1*****.jpg" onclick="setImage(0)">
+<img src="2*****.jpg" onclick="setImage(1)">
+<img src="3*****.jpg" onclick="setImage(2)">
+<img src="4*****.jpg" onclick="setImage(3)">
+<img src="5*****.jpg" onclick="setImage(4)">
+</div>
+</div>
+
+<div>
+<h1>******** ****</h1><!--назва та рік-->
+<div class="price">$** ***</div><!--ціна-->
+
+<p>******************</p><!--короткий опис-->
+
+<div class="specs">
+<div class="spec"><b>Пробіг:</b><br>*** тис. км</div>
+<div class="spec"><b>Паливо:</b><br>*****</div>
+<div class="spec"><b>Двигун:</b><br>*.* L</div>
+<div class="spec"><b>Коробка:</b><br>*****</div>
+<div class="spec"><b>Привід:</b><br>*****</div>
+<div class="spec"><b>Кузов:</b><br>*******</div>
+</div>
+
+<a class="btn" href="../../contact-us.html">Зв'язатися з нами</a>
+</div>
+
+</div>
+
+<div class="section">
+<h2>Опис автомобіля</h2>
+<p>************</p><!--опис-->
+</div>
+
+<div class="section">
+<h2>Комплектація</h2>
+
+<div class="features">
+<div class="feature">✓ ****</div>
+<div class="feature">✓ ****</div>
+<div class="feature">✓ ****</div>
+<div class="feature">✓ ****</div>
+<div class="feature">✓ ****</div>
+
+
+</div>
+
+</div>
+
+</div>
+
+<footer>
+<h3>Lux Auto</h3>
+<p>Телефон: +380 96 826 4242</p>
+<p>Пн-Нд 08:58–21:21</p>
+</footer>
+
+<script>
+const images=[
+"1*****.jpg",
+"2*****.jpg",
+"3*****.jpg",
+"4*****.jpg",
+"5*****.jpg",
+];
+
+let current=0;
+
+function setImage(index){
+current=index;
+document.getElementById("mainImage").src=images[current];
+}
+
+function changeSlide(step){
+current+=step;
+
+if(current<0) current=images.length-1;
+if(current>=images.length) current=0;
+
+document.getElementById("mainImage").src=images[current];
+}
+</script>
+
+</body>
+</html>
