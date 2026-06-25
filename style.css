@@ -33,79 +33,7 @@ text-decoration:none;
 margin-left:25px;
 }
 
-@media (max-width: 768px){
 
-.header{
-    padding:10px;
-    flex-wrap:wrap;
-    height:auto;
-    gap:10px;
-    flex-direction:column;
-}
-.header-center{
-    position:static;
-    transform:none;
-}
-
-.header img{
-    width:45px;
-}
-
-.header h2{
-    font-size:20px;
-}
-
-.header div:last-child{
-    width:100%;
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:15px;
-}
-
-.header a{
-    margin:0;
-    font-size:14px;
-}
-
-
-.catalog-hero-text{
-    font-size: smaller ;
-}
-.badge{
-padding:5px 9px;
-}
-.container{
-    padding:15px;
-}
-
-.hero-features{
-    gap:10px;
-}
-
-.hero-features span{
-    font-size:14px;
-    padding:8px 12px;
-}
-
-.block-auto{
-    margin: 5px;
-    display:flex;
-    flex-direction:column;
-    gap:20px;
-}
-
-.car-card{
-    width:94% !important;
-    margin: 5px !important;
-}
-
-.car-image{
-    width:100% !important;
-    height:220px !important;
-    object-fit:cover;
-}
-}
 
 .car-title h3{
     font-size:22px;
@@ -331,3 +259,76 @@ footer{
 }
 
 
+@media (max-width: 768px){
+
+.header{
+    padding:10px;
+    flex-wrap:wrap;
+    height:auto;
+    gap:10px;
+    flex-direction:column;
+}
+.header-center{
+    position:static;
+    transform:none;
+}
+
+.header img{
+    width:45px;
+}
+
+.header h2{
+    font-size:20px;
+}
+
+.header div:last-child{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:15px;
+}
+
+.header a{
+    margin:0;
+    font-size:14px;
+}
+
+
+.catalog-hero-text{
+    font-size: smaller ;
+}
+.badge{
+padding:5px 9px;
+}
+.container{
+    padding:15px;
+}
+
+.hero-features{
+    gap:10px;
+}
+
+.hero-features span{
+    font-size:14px;
+    padding:8px 12px;
+}
+
+.block-auto{
+    margin: 5px;
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+.car-card{
+    width:94% !important;
+    margin: 5px !important;
+}
+
+.car-image{
+    width:100% !important;
+    height:220px !important;
+    object-fit:cover;
+}
+}
