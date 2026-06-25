@@ -6,42 +6,40 @@
 <title>Lux Auto - Про нас</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;
+*{margin:0;padding:0;box-sizing:border-box}
+html, body{
+    overflow-x: hidden;
+    width: 100%;
 }
-html {
-  scroll-behavior: smooth; /*плавний скрол */
+body{
+font-family:Arial,sans-serif;
+background:#f5f5f5;
+color:#222;
 }
 
-body{
-   font-family:Arial,sans-serif;
-   background:#f5f5f5;
-   color:#222;
-}
 .header{
-   background:#1b1b1b;
-   color:#fff;
-   padding:12px 20px;
-   display:flex;
-   align-items:center;
-   position:relative;
+    background:#1b1b1b;
+    color:#fff;
+    padding:12px 20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    font-weight: bold;
+    height: 60px;
 }
-.header-text{
-   position:absolute;
-   left:50%;
-   transform:translateX(-50%);
+.header-center{
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
 }
 .header img{/* header image */
-    width: 3%;   
-}   
-.header-btn{/* Header Low Button */
-    display: flex;
-    justify-content: space-evenly;
-    gap: 30px;
+    width: 60px;   
+}  
+.header a{
+color:white;
+text-decoration:none;
+margin-left:25px;
 }
-.header-btn a{/* Header Low Button a */
-    text-decoration: none; /* прибирає риску */
-    color: rgb(206, 206, 206);
-} 
 
 .block1{
    display:flex;
@@ -202,39 +200,148 @@ footer{
 
 
 
-@media(max-width:900px){
-.hero,.location{
+@media (max-width:768px){
+
+/* Header */
+.header{
+    flex-direction:column;
+    height:auto;
+    padding:10px;
+    gap:10px;
+}
+
+.header-center{
+    position:static;
+    transform:none;
+}
+
+.header img{
+    width:45px;
+}
+
+.header div{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:10px;
+}
+
+.header a{
+    margin:0;
+    font-size:14px;
+}
+
+/* Перший блок */
+.block1{
+    flex-direction:column;
+    padding:30px 15px;
+    gap:20px;
+    text-align:center;
+}
+
+.block1 img{
+    width:100%;
+}
+
+.block1 h1{
+    font-size:40px;
+}
+
+.block1-features{
+    justify-content:center;
+}
+
+/* Кнопка */
+.btn{
+    width:100%;
+    max-width:300px;
+}
+
+/* Статистика */
+.stats{
+    flex-direction:column;
+    gap:25px;
+}
+
+/* Карточки */
+.cards{
     flex-direction:column;
 }
 
-.hero img{
+.card{
+    width:100%;
+    min-width:auto;
+    scale:1;
+}
+
+/* Галерея */
+.gallery img{
     width:100%;
 }
-.stats{
-    flex-wrap:wrap;gap:30px;
+
+/* Адреса */
+.location{
+    flex-direction:column;
+    text-align:center;
+}
+
+.location img{
+    width:100%;
+    max-width:100%;
+}
+
+/* QR-коди */
+.social{
+    gap:15px;
+}
+
+.social img{
+    width:110px;
+    height:110px;
+    object-fit:cover;
+}
+
+.text-qr{
+    width:100%;
+    justify-content:space-around;
+    font-size:14px;
+    margin-top:15px;
+}
+
+/* Відгуки */
+.reviews{
+    padding:30px 15px;
+}
+
+.review-box{
+    width:100%;
+    max-width:none;
+    margin:10px 0;
+}
+
+/* Footer */
+.info-footer{
+    width:100%;
+    flex-direction:column;
+    gap:15px;
+}
+
 }
 
 
-
-}
 </style>
 
 </head>
 <body>
 
 <div class="header">
-  <img src="images/logo/LuxAutoImg2.png" alt="LuxAuto Logo">
-
-  <div class="header-text">
-      <h2>Lux Auto</h2>
-  </div>
-
-
-<div class="header-btn" style="margin-left:auto" ><!-- Header Text -->
-    <div class="header-low-index"><a href="index.html"><h4>На головну</h4></a></div>
-    <div class="header-low-contact-us"><a href="contact-us.html"><h4>Зв'язатися з нами</h4></a></div>
-    <div class="header-services"><a href="services.html"><h4>Наші послуги</h4></a></div>
-    </div>
+<img src="images/logo/LuxAutoImg3.png" alt="LuxAuto Logo">
+<h2 class="header-center">Lux Auto</h2>
+<div>
+<a href="aboutus.html">Про нас</a>
+<a href="contact-us.html">Зв'яжіться з нами</a>
+<a href="services.html">Сервіс</a>
+</div>
 </div>
 
 <section class="block1">
