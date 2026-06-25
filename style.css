@@ -294,9 +294,17 @@ footer{
     font-size:14px;
 }
 
-
+.catalog-hero{
+    padding:30px 20px;
+    text-align:center;
+    background:#fff;
+}
 .catalog-hero-text{
     font-size: smaller ;
+}
+.catalog-hero h1{
+    font-size:35px;
+    margin:20px 0;
 }
 .badge{
 padding:5px 9px;
@@ -324,11 +332,15 @@ padding:5px 9px;
 .car-card{
     width:94% !important;
     margin: 5px !important;
+      max-width:none !important;
 }
 
 .car-image{
     width:100% !important;
     height:220px !important;
     object-fit:cover;
+}  
+.car-image{
+    border:10px solid red !important;
 }
 }
