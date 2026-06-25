@@ -307,7 +307,7 @@ footer{
     margin:20px 0;
 }
 .catalog-hero p{
-    font-size:smaller;
+    font-size:small;
     margin:20px 0;
 }
 .badge{
@@ -347,10 +347,10 @@ padding:5px 9px;
 
 
 .details-button{
-    width: 79%;
+    width: 75%;
 }
 .phone-button{
-    width: 15%;
+    width: 20%;
 }
 
 }
