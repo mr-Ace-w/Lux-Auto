@@ -200,22 +200,21 @@ margin-left:25px;
 }
 
 .car-title{
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-start;
+    display:grid;
+    grid-template-columns:1fr auto;
     gap:10px;
+    min-height:72px;
+    align-items:start;
 }
 
 .car-title h3{
-    flex:1;
     font-size:28px;
-    line-height:1.15;
+    line-height:1.2;
 }
 
 .car-title span{
-    flex-shrink:0;
-    font-size: 28px;
-    font-weight: bold;
+    font-size:28px;
+    font-weight:bold;
 }
 .specs{
     display: grid;
@@ -303,13 +302,6 @@ margin-left:25px;
 
 
     
-
-
-
-
-
-
-
 
 
 
