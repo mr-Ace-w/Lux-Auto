@@ -177,6 +177,7 @@ margin-left:25px;
 
 .car-card{
     width:100%;
+    max-width:420px;
     background:#ffffff;
     border-radius:9px;
     overflow:hidden;
