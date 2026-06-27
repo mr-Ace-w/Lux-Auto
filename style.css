@@ -404,7 +404,6 @@ padding:5px 9px;
 
 
 .block-auto{
-    margin: 5px;
     display:flex;
     flex-direction:column;
     gap:20px;
@@ -412,6 +411,7 @@ padding:5px 9px;
 
 .car-card{
     width:100% !important;
+    margin: 5px !important;
     max-width:none !important;
 }
 
