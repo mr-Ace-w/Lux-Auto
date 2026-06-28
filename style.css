@@ -421,6 +421,7 @@ padding:5px 9px;
 .filters input,
 .filters button{
     width:50%;
+    min-width: 60px;
 }
 
 
