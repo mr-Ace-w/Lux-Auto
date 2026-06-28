@@ -421,7 +421,7 @@ padding:5px 9px;
 .filters input,
 .filters button{
     width:50%;
-    min-width: 60px;
+    min-width: 30px;
 }
 
 
@@ -449,6 +449,20 @@ padding:5px 9px;
 }
 .phone-button{
     width: 20%;
+}
+.btn-load-more{
+    flex:1;
+    width:40%;
+    margin-top:20px;
+    background:#1b1b1b;
+    color:#fff;
+    padding:14px 22px;
+    border-radius:10px;
+    margin-left: 40%;
+    text-decoration:none;
+    text-align: center;
+    border:2px solid transparent;
+    transition: 0.3s;
 }
 
 }
