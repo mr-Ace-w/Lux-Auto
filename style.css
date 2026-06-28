@@ -413,14 +413,14 @@ padding:5px 9px;
 
 
 .filters{
-    flex-direction:column;
-    align-items:stretch;
+    flex-wrap: wrap;
+    padding:10px;
 }
 
 .filters select,
 .filters input,
 .filters button{
-    width:100%;
+    width:45%;
 }
 
 
@@ -447,7 +447,14 @@ padding:5px 9px;
     width: 75%;
 }
 .phone-button{
-    width: 40%;
+    width: 20%;
 }
+
+.btn-load-more{
+    width:40%;
+    margin-left: 30%;
+}
+
+
 
 }
