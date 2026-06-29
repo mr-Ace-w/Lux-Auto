@@ -7,6 +7,9 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
+html {
+    scroll-behavior: smooth;
+}
 html, body{
     overflow-x: hidden;
     width: 100%;
@@ -48,7 +51,6 @@ margin-left:25px;
 
 
 
-
 footer{
     background:#1b1b1b;
     color:#fff;
@@ -70,19 +72,53 @@ footer{
 
 
 
-@media(max-width:900px){
-.hero,.location{
+@media (max-width:768px){
+
+/* Header */
+.header{
     flex-direction:column;
+    height:auto;
+    padding:10px;
+    gap:10px;
 }
 
-.hero img{
+.header-center{
+    position:static;
+    transform:none;
+}
+
+.header img{
+    width:45px;
+}
+
+.header div{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:10px;
+}
+
+.header a{
+    margin:0;
+    font-size:14px;
+}
+
+     
+
+
+
+
+
+
+/* Footer */
+.info-footer{
     width:100%;
+    flex-direction:column;
+    gap:15px;
 }
-.stats{
-    flex-wrap:wrap;gap:30px;
+.info-footer a{
+    color: inherit;
 }
-
-
 
 }
 </style>
