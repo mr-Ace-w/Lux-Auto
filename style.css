@@ -85,10 +85,10 @@ margin-left:25px;
         opacity .6s ease,
         transform .6s ease;
 }
-.filters select,
+.filters select.show,
 .filters input.show{
-    opacity: 1;
-    transform: translateY(0);
+    opacity:1;
+    transform:translateY(0);
 }
 /*  */
 
@@ -141,19 +141,16 @@ margin-left:25px;
     text-align:center;
     background:#fff;
 }
-/* анімація появи */
 .catalog-hero{
-    opacity: 0;
-    transform: translateY(40px);
-    transition:
-        opacity .6s ease,
-        transform .6s ease;
+    opacity:0;
+    transform:translateY(40px);
+    transition:opacity .8s ease, transform .8s ease;
 }
+
 .catalog-hero.show{
-    opacity: 1;
-    transform: translateY(0);
+    opacity:1;
+    transform:translateY(0);
 }
-/*  */
 
 
 

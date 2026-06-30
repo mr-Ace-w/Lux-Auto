@@ -487,18 +487,24 @@ const observer = new IntersectionObserver((entries)=>{
         if(entry.isIntersecting){
 
             entry.target.style.transitionDelay = `${index*0.05}s`;
-
             entry.target.classList.add("show");
+
+            observer.unobserve(entry.target);
+
         }
     });
 },{
-    threshold:.15
+    threshold:0.05
 });
 
-document.querySelectorAll(
-".car-card, .catalog-hero, .filters select, .filters input, .section-title"
-).forEach(el=>{
-    observer.observe(el);
+// тільки карточки
+document.querySelectorAll(".car-card").forEach(card=>{
+    observer.observe(card);
+});
+
+// Hero запускається одразу після завантаження
+window.addEventListener("load",()=>{
+    document.querySelector(".catalog-hero").classList.add("show");
 });
 </script>
 
