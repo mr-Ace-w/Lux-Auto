@@ -55,11 +55,17 @@ padding:30px;
     grid-template-columns:1.2fr 0.8fr;
     gap:40px;
 }
-
 .top > div{
     width:100%;
     min-width:0;
 }
+.top > div:last-child{
+    opacity:0;
+    transform:translateX(80px);
+    transition:.8s .2s cubic-bezier(.22,.61,.36,1);
+}
+
+
 .gallery{
     position:relative;
     width:100%;
@@ -76,9 +82,20 @@ padding:30px;
     border-radius:15px;
     transition: 0.2s;
 }
-
 .gallery img:hover{
     transform:scale(1.3);
+}
+.gallery{
+    opacity:0;
+    transform:translateX(-80px);
+    transition:.8s cubic-bezier(.22,.61,.36,1);
+}
+
+
+.top.show .gallery,
+.top.show > div:last-child{
+    opacity:1;
+    transform:none;
 }
 
 
@@ -703,7 +720,21 @@ document.addEventListener("keydown",(e)=>{
 </script>
 
 
+<!-- анімація появи-->
+<script>
+const topObserver = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+        if(entry.isIntersecting){
+            entry.target.classList.add("show");
+            topObserver.unobserve(entry.target);
+        }
+    });
+},{
+    threshold:0.25
+});
 
+topObserver.observe(document.querySelector(".top"));    
+</script>
 
 
 </body>
