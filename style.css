@@ -76,21 +76,7 @@ margin-left:25px;
     border-color:#000;
     color:#1b1b1b;
 }
-/* анімація появи */
-.filters select,
-.filters input{
-    opacity: 0;
-    transform: translateY(40px);
-    transition:
-        opacity .6s ease,
-        transform .6s ease;
-}
-.filters select.show,
-.filters input.show{
-    opacity:1;
-    transform:translateY(0);
-}
-/*  */
+
 
 
 
