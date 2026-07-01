@@ -45,8 +45,12 @@
 </section>   
 
 
+<div class="car-count">
+ <center>
+  <h3>В наявності <span id="car-count"></span> авто</h3>
+</center>   
+</div>
 
-<center> <h3>В наявності 8 авто</h3></center>
 
 
 
@@ -79,7 +83,16 @@
         <option value="Дизель">Дизель</option>
     </select>
 
-    
+    <select id="sortSelect">
+        <option value="default">Сортування</option>
+        <option value="priceLow"> Ціна: дешевші</option>
+        <option value="priceHigh"> Ціна: дорожчі</option>
+        <option value="yearNew">Рік: новіші</option>
+        <option value="yearOld"> Рік: старіші</option>
+        <option value="mileageLow"> Пробіг: менший</option>
+        <option value="mileageHigh"> Пробіг: більший</option>
+    </select>
+
     <button id="reset">Скинути</button>
 
 </div>
@@ -92,9 +105,12 @@
 
 <div class="block-auto"><!-- Block Auto -->
     
-   
 
-    <div class="car-card"><!-- Картка авто -->
+<!-- Картка авто -->
+<div class="car-card" 
+     data-price="15500"
+     data-year="2020"
+     data-mileage="112000">
     <!-- 1 -->
      
       <img class="car-image" src="cars/car1/1dodge_journey.webp"  alt="Dodge Journey"><!-- Фото авто -->
@@ -131,8 +147,13 @@
 
 
 
- <div class="car-card"><!-- Картка авто -->
+ <div class="car-card" 
+     data-price="61900"
+     data-year="2024"
+     data-mileage="25000"><!-- Картка авто -->
     <!-- 2 -->
+  
+
       <img src="cars/car2/bmw_ix1.webp" class="car-image" alt="bmw ix"><!-- Фото авто -->
 
     <div class="car-info">
@@ -165,7 +186,10 @@
 
 
 
-<div class="car-card"><!-- Картка авто -->
+<div class="car-card" 
+     data-price="20500"
+     data-year="2021"
+     data-mileage="160000"><!-- Картка авто -->
     <!-- 3 -->
       <img src="cars/car3/TeslaY1.png" class="car-image" alt="Tesla Model Y"><!-- Фото авто -->
 
@@ -200,7 +224,10 @@
 
 <!--  -->
 
-<div class="car-card"><!-- Картка авто -->
+<div class="car-card" 
+     data-price="22450"
+     data-year="2013"
+     data-mileage="173000"><!-- Картка авто -->
    <!-- 4 -->
       <img src="cars/car4/jeep_grand-cherokee1.png" class="car-image" alt="jeep grand cherokee"><!-- Фото авто -->
 
@@ -235,7 +262,10 @@
 
 
 
-<div class="car-card"><!-- Картка авто -->
+<div class="car-card" 
+     data-price="24399"
+     data-year="2016"
+     data-mileage="297000"><!-- Картка авто -->
    <!-- 5 -->
       <img src="cars/car5/audi1.webp" class="car-image" alt="audiq7"><!-- Фото авто -->
 
@@ -271,7 +301,10 @@
 
 
 
-<div class="car-card"><!-- Картка авто -->
+<div class="car-card" 
+     data-price="23800"
+     data-year="2019"
+     data-mileage="220000"><!-- Картка авто -->
    <!-- 6 -->
       <img src="cars/car6/audi1.webp" class="car-image" alt="audiq7"><!-- Фото авто -->
 
@@ -307,7 +340,10 @@
 
 
 
-<div class="car-card"><!-- Картка авто -->
+<div class="car-card" 
+     data-price="25900"
+     data-year="2017"
+     data-mileage="260000"><!-- Картка авто -->
    <!-- 7 -->
       <img src="cars/car7/honda4.webp" class="car-image" alt="honda7"><!-- Фото авто -->
 
@@ -342,7 +378,10 @@
 
 
 
-<div class="car-card"><!-- Картка авто -->
+<div class="car-card" 
+     data-price="68000"
+     data-year="2021"
+     data-mileage="38000"><!-- Картка авто -->
    <!-- 8 -->
       <img src="cars/car8/audi1.webp" class="car-image" alt="honda7"><!-- Фото авто -->
 
@@ -381,7 +420,7 @@
 
 
 </div>
-<button class="btn-load-more" id="loadMore">Показати більше</button>
+
 </div>
 
 
@@ -400,6 +439,9 @@
 
 <!-- script Filter -->
 <script>
+
+
+
     const cars = document.querySelectorAll(".car-card");
 
 function filterCars(){
@@ -446,36 +488,64 @@ document.getElementById("reset").addEventListener("click", () => {
     document.querySelectorAll(".filters select").forEach(s => s.value = "all");
     filterCars();
 });
-</script>
 
 
-<!-- btn load more -->
-<script>
-    const cards = document.querySelectorAll(".car-card");
-const button = document.getElementById("loadMore");
 
-let visible = 4; // скільки показати спочатку
 
-function showCards() {
-    cards.forEach((card, index) => {
-        if (index < visible) {
-            card.style.display = "block";
+
+
+
+
+const sortSelect = document.getElementById("sortSelect");
+const container = document.querySelector(".block-auto");
+
+function sortCars() {
+    const value = sortSelect.value;
+
+    const sorted = Array.from(cars);
+
+    sorted.sort((a, b) => {
+        const priceA = +a.dataset.price;
+        const priceB = +b.dataset.price;
+
+        const yearA = +a.dataset.year;
+        const yearB = +b.dataset.year;
+
+        const mileageA = +a.dataset.mileage;
+        const mileageB = +b.dataset.mileage;
+
+        switch (value) {
+            case "priceLow":
+                return priceA - priceB;
+
+            case "priceHigh":
+                return priceB - priceA;
+
+            case "yearNew":
+                return yearB - yearA;
+
+            case "yearOld":
+                return yearA - yearB;
+
+            case "mileageLow":
+                return mileageA - mileageB;
+
+            case "mileageHigh":
+                return mileageB - mileageA;
+
+            default:
+                return 0;
         }
     });
 
-    if (visible >= cards.length) {
-        button.style.display = "none";
-    }
+    // перевставляємо в DOM
+    sorted.forEach(car => container.appendChild(car));
 }
 
-// перший запуск
-showCards();
+sortSelect.addEventListener("change", sortCars);
 
-button.addEventListener("click", () => {
-    visible += 4;
-    showCards();
-});
 </script>
+
 
 
 
@@ -510,9 +580,74 @@ window.addEventListener("load",()=>{
 
 
 
+<!-- скинути -->
+<script>
+ document.getElementById("reset").addEventListener("click", () => {
+
+    // очистка input
+    document.querySelectorAll(".filters input").forEach(i => i.value = "");
+
+    // reset select
+    document.querySelectorAll(".filters select").forEach(s => {
+        if (s.id === "sortSelect") {
+            s.value = "default";
+        } else {
+            s.value = "all";
+        }
+    });
+
+    // повертаємо початковий порядок карточок
+    const container = document.querySelector(".block-auto");
+    const original = Array.from(cars);
+
+    original.forEach(car => {
+        car.style.display = "block";
+        container.appendChild(car);
+    });
+
+    // оновлюємо фільтр + показ
+    visible = 4;
+    showCards();
+    filterCars();
+});document.getElementById("reset").addEventListener("click", () => {
+
+    // очистка input
+    document.querySelectorAll(".filters input").forEach(i => i.value = "");
+
+    // reset select
+    document.querySelectorAll(".filters select").forEach(s => {
+        if (s.id === "sortSelect") {
+            s.value = "default";
+        } else {
+            s.value = "all";
+        }
+    });
+
+    // повертаємо початковий порядок карточок
+    const container = document.querySelector(".block-auto");
+    const original = Array.from(cars);
+
+    original.forEach(car => {
+        car.style.display = "block";
+        container.appendChild(car);
+    });
+
+    // оновлюємо фільтр + показ
+    showCards();
+    filterCars();
+});   
+</script>
 
 
+<!-- оновлення лічильника авто -->
+<script>
+function updateCarCount() {
+    const cars = document.querySelectorAll(".car-card");
+    document.getElementById("car-count").textContent = cars.length;
+}
 
+updateCarCount();
+</script>
 
 
 </body>

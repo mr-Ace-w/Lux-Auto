@@ -35,6 +35,13 @@ margin-left:25px;
 
 
 
+.car-count{
+    z-index: 1000;
+}
+
+
+
+
 .filters{
     display:flex;
     gap:10px;
@@ -125,7 +132,7 @@ margin-left:25px;
 .catalog-hero{
     padding:80px 40px;
     text-align:center;
-    background:#fff;
+    background:#ffffff00;
 }
 .catalog-hero{
     opacity:0;
@@ -200,17 +207,16 @@ margin-left:25px;
     flex-direction:column;
     box-shadow:0 2px 8px rgba(0, 0, 0, 0.685);
 }
-.car-card {
-    display: none;
+.hidden {
+    display: none !important;
 }
 /* анімація появи */
 .car-card{
     opacity: 0;
     transform: translateY(40px);
-    transition:
-        opacity .6s ease,
-        transform .6s ease;
+    transition: opacity .6s ease, transform .6s ease;
 }
+
 .car-card.show{
     opacity: 1;
     transform: translateY(0);
