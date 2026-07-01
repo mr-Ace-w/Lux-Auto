@@ -59,6 +59,11 @@ padding:30px;
     width:100%;
     min-width:0;
 }
+.top > div:last-child{
+    opacity:0;
+    transform:translateX(80px);
+    transition:.8s .2s cubic-bezier(.22,.61,.36,1);
+}
 .gallery{
     position:relative;
     width:100%;
@@ -66,7 +71,11 @@ padding:30px;
     overflow:hidden;
     border-radius:15px;
 }
-
+.gallery{
+    opacity:0;
+    transform:translateX(-80px);
+    transition:.8s cubic-bezier(.22,.61,.36,1);
+}
 .gallery img{
     display:block;
     width:100%;
@@ -79,6 +88,12 @@ padding:30px;
     transform:scale(1.1);
 }
 
+
+.top.show .gallery,
+.top.show > div:last-child{
+    opacity:1;
+    transform:none;
+}
 
 .prev,.next{
 position:absolute;
@@ -227,6 +242,8 @@ text-align:center;
 .short-about{
     grid-template-columns:1fr;
 }
+
+
 /* ================= LIGHTBOX ================= */
 .lightbox{
     position:fixed;
@@ -399,6 +416,9 @@ h1{
 .btn{
     width: 100%;
 }
+.btn2{
+    width: 100%;
+}
 
 footer{
     padding:20px 10px;
@@ -427,7 +447,6 @@ footer h3{
     color: inherit;
 }
 
-
 .light-prev,
 .light-next{
     width:40px;
@@ -440,6 +459,8 @@ footer h3{
     top:15px;
     right:20px;
 }
+
+
 
 }
 </style>
@@ -643,9 +664,7 @@ document.getElementById("mainImage").src=images[current];
 <!-- sensor -->
 <script>
     let startX = 0;
-
 const mainImage = document.getElementById("mainImage");
-
 mainImage.addEventListener("touchstart",(e)=>{
     startX = e.touches[0].clientX;
 });
@@ -653,11 +672,9 @@ mainImage.addEventListener("touchstart",(e)=>{
 mainImage.addEventListener("touchend",(e)=>{
 
     let endX = e.changedTouches[0].clientX;
-
     if(startX - endX > 50){
         changeSlide(1);
     }
-
     if(endX - startX > 50){
         changeSlide(-1);
     }
@@ -722,6 +739,23 @@ document.addEventListener("keydown",(e)=>{
 });    
 </script>
 
+
+
+<!-- анімація появи-->
+<script>
+const topObserver = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+        if(entry.isIntersecting){
+            entry.target.classList.add("show");
+            topObserver.unobserve(entry.target);
+        }
+    });
+},{
+    threshold:0.25
+});
+
+topObserver.observe(document.querySelector(".top"));    
+</script>
 
 
 </body>

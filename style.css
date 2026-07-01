@@ -374,6 +374,11 @@ footer{
     width: 25%;
     margin: auto;
 }
+.footer-inc img{
+    width: 30px;
+    height: 30px;
+    margin-right: 6px;
+}
 
 
 @media (max-width: 768px){

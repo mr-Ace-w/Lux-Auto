@@ -60,6 +60,13 @@ padding:30px;
     width:100%;
     min-width:0;
 }
+.top > div:last-child{
+    opacity:0;
+    transform:translateX(80px);
+    transition:.8s .2s cubic-bezier(.22,.61,.36,1);
+}
+
+
 .gallery{
     position:relative;
     width:100%;
@@ -67,7 +74,11 @@ padding:30px;
     overflow:hidden;
     border-radius:15px;
 }
-
+.gallery{
+    opacity:0;
+    transform:translateX(-80px);
+    transition:.8s cubic-bezier(.22,.61,.36,1);
+}
 .gallery img{
     display:block;
     width:100%;
@@ -79,6 +90,15 @@ padding:30px;
 .gallery img:hover{
     transform:scale(1.1);
 }
+
+
+
+.top.show .gallery,
+.top.show > div:last-child{
+    opacity:1;
+    transform:none;
+}
+
 
 .prev,.next{
 position:absolute;
@@ -597,23 +617,18 @@ document.getElementById("mainImage").src=images[current];
     let startX = 0;
 
 const mainImage = document.getElementById("mainImage");
-
 mainImage.addEventListener("touchstart",(e)=>{
     startX = e.touches[0].clientX;
 });
 
 mainImage.addEventListener("touchend",(e)=>{
-
     let endX = e.changedTouches[0].clientX;
-
     if(startX - endX > 50){
         changeSlide(1);
     }
-
     if(endX - startX > 50){
         changeSlide(-1);
     }
-
 });
 </script>
 
@@ -631,17 +646,14 @@ function openLightbox(){
     document.body.classList.add("no-scroll");
 
 }
-
 function closeLightbox(){
     lightbox.classList.remove("show");
     document.body.classList.remove("no-scroll");
 
 }
-
 mainImage.addEventListener("click", openLightbox);
 document.querySelector(".close").onclick = closeLightbox;
 lightbox.addEventListener("click",(e)=>{
-
     if(e.target===lightbox){
         closeLightbox();
     }
@@ -672,6 +684,23 @@ document.addEventListener("keydown",(e)=>{
     }
 
 });    
+</script>
+
+
+<!-- анімація появи-->
+<script>
+const topObserver = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+        if(entry.isIntersecting){
+            entry.target.classList.add("show");
+            topObserver.unobserve(entry.target);
+        }
+    });
+},{
+    threshold:0.25
+});
+
+topObserver.observe(document.querySelector(".top"));    
 </script>
 
 
