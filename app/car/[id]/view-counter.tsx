@@ -1,0 +1,1 @@
+'use client';import {useEffect} from 'react';import {createClient} from '@/lib/supabase/browser';export function ViewCounter({id}:{id:string}){useEffect(()=>{const key=`viewed-${id}`;if(!sessionStorage.getItem(key)){sessionStorage.setItem(key,'1');createClient().rpc('increment_car_views',{car_id:id})}},[id]);return null}

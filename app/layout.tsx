@@ -1,0 +1,3 @@
+import type {Metadata} from 'next'; import './globals.css';
+export const metadata:Metadata={title:{default:'Lux Auto',template:'%s | Lux Auto'},description:'Продаж, обмін та викуп автомобілів у Теребовлі.',icons:{icon:'/favicon.ico',apple:'/apple-touch-icon.png'},manifest:'/manifest.webmanifest'};
+export default function Layout({children}:{children:React.ReactNode}){return <html lang="uk"><body>{children}<script dangerouslySetInnerHTML={{__html: `if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.serviceWorker.register('/sw.js').then(()=>console.log('SW ok')).catch(err=>console.log(err));});}`}} /></body></html>}
