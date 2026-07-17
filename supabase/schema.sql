@@ -57,7 +57,7 @@ create policy "public reads car images" on public.car_images for select using (t
 create policy "admins manage images" on public.car_images for all using (public.is_admin()) with check (public.is_admin());
 
 insert into storage.buckets(id,name,public,file_size_limit,allowed_mime_types)
-values ('car-images','car-images',true,10485760,array['image/webp']) on conflict (id) do update set public=true,file_size_limit=10485760,allowed_mime_types=array['image/webp'];
+values ('car-images','car-images',true,10485760,array['image/webp', 'image/jpeg', 'image/png']) on conflict (id) do update set public=true,file_size_limit=10485760,allowed_mime_types=array['image/webp', 'image/jpeg', 'image/png'];
 drop policy if exists "admins upload car photos" on storage.objects;
 drop policy if exists "admins update car photos" on storage.objects;
 drop policy if exists "admins delete car photos" on storage.objects;
