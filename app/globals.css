@@ -1611,6 +1611,7 @@ body.no-scroll {
 
 
 
+
 /* ==========================================================================
    CAR PAGE SPECIFIC STYLES (RESTORED FROM OLD VERSION WITH SHIELDING OVERRIDES)
    ========================================================================= */
@@ -1670,7 +1671,7 @@ body.no-scroll {
     display: block !important;
     width: 100% !important;
     height: 100% !important;
-    object-fit: contain !important; /* Fit within container without crop */
+    object-fit: cover !important; /* Cover/crop to fill container perfectly */
     border-radius: 15px !important;
     padding: 0 !important;
     background: none !important;
@@ -1680,10 +1681,10 @@ body.no-scroll {
     transform: none !important;
 }
 .car-page .gallery img.img-contain {
-    object-fit: contain !important;
+    object-fit: cover !important;
 }
 .car-page .gallery img.img-cover {
-    object-fit: contain !important;
+    object-fit: cover !important;
 }
 .car-page .gallery img:hover {
     transform: none !important;
@@ -2017,15 +2018,15 @@ body.no-scroll {
     .car-page .gallery img {
         width: 100% !important;
         height: 100% !important;
-        object-fit: contain !important; /* Fit within aspect ratio without crop */
+        object-fit: cover !important; /* Cover/crop to fill aspect ratio perfectly */
         display: block !important;
         border-radius: 12px !important;
     }
     .car-page .gallery img.img-contain {
-        object-fit: contain !important;
+        object-fit: cover !important;
     }
     .car-page .gallery img.img-cover {
-        object-fit: contain !important;
+        object-fit: cover !important;
     }
 
     .car-page .prev,
