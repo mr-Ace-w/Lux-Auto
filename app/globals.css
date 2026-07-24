@@ -1610,6 +1610,7 @@ body.no-scroll {
 
 
 
+
 /* ==========================================================================
    CAR PAGE SPECIFIC STYLES (RESTORED FROM OLD VERSION WITH SHIELDING OVERRIDES)
    ========================================================================= */
@@ -1652,10 +1653,10 @@ body.no-scroll {
     position: relative !important;
     width: 100% !important;
     max-width: 100% !important;
-    height: auto !important; /* Height is now auto to prevent layout cropping */
+    height: 500px !important; /* Fixed height on desktop to prevent shifting */
     overflow: hidden !important;
     border-radius: 15px !important;
-    background: #fafafa !important;
+    background: #1b1b1b !important; /* Dark background looks premium */
     box-shadow: none !important;
     display: flex !important;
     align-items: center !important;
@@ -1668,8 +1669,8 @@ body.no-scroll {
 .car-page .gallery img {
     display: block !important;
     width: 100% !important;
-    max-width: 100% !important;
-    height: auto !important; /* Height auto ensures natural aspect ratio scaling */
+    height: 100% !important;
+    object-fit: contain !important; /* Fit within container without crop */
     border-radius: 15px !important;
     padding: 0 !important;
     background: none !important;
@@ -1682,10 +1683,10 @@ body.no-scroll {
     object-fit: contain !important;
 }
 .car-page .gallery img.img-cover {
-    object-fit: contain !important; /* Changed to contain to avoid horizontal car crops */
+    object-fit: contain !important;
 }
 .car-page .gallery img:hover {
-    transform: scale(1.05) !important;
+    transform: none !important;
 }
 
 .car-page .top.show .gallery,
@@ -2004,19 +2005,21 @@ body.no-scroll {
     }
     .car-page .gallery {
         width: 100% !important;
-        height: auto !important; /* Height is auto on mobile to prevent cropped shapes */
-        background: #fafafa !important;
+        aspect-ratio: 4 / 3 !important; /* Fixed aspect ratio to prevent page shifting */
+        height: auto !important;
+        background: #1b1b1b !important; /* Premium dark background */
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
+        border-radius: 12px !important;
     }
 
     .car-page .gallery img {
         width: 100% !important;
-        max-width: 100% !important;
-        height: auto !important; /* Natural scaling */
+        height: 100% !important;
+        object-fit: contain !important; /* Fit within aspect ratio without crop */
         display: block !important;
-        border-radius: 10px !important;
+        border-radius: 12px !important;
     }
     .car-page .gallery img.img-contain {
         object-fit: contain !important;
