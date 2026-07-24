@@ -1609,6 +1609,7 @@ body.no-scroll {
 
 
 
+
 /* ==========================================================================
    CAR PAGE SPECIFIC STYLES (RESTORED FROM OLD VERSION WITH SHIELDING OVERRIDES)
    ========================================================================= */
@@ -2523,6 +2524,10 @@ body.no-scroll {
     display: none !important;
 }
 
+.burger-btn {
+    display: none !important;
+}
+
 /* ================= HEADER RESPONSIVENESS OVERRIDES (BREAKPOINT AT 1024PX) ================= */
 @media (max-width: 1024px) {
     /* Header Responsiveness Fixes */
@@ -2533,28 +2538,47 @@ body.no-scroll {
         display: inline !important;
     }
     .header {
-        padding: 10px 15px !important;
-        flex-wrap: wrap !important;
-        height: auto !important;
-        gap: 10px !important;
-        flex-direction: column !important;
+        padding: 0 15px !important;
+        flex-direction: row !important;
         align-items: center !important;
+        justify-content: space-between !important;
+        height: 60px !important;
+        position: relative !important;
     }
-    .header-center {
-        position: static !important;
-        transform: none !important;
-        margin: 5px 0 !important;
-        font-size: 20px !important;
+    .header-logo {
+        display: block !important;
+        width: 45px !important;
+        height: 45px !important;
+        object-fit: contain !important;
     }
     .header img {
-        display: none !important;
+        display: block !important;
+        width: 45px !important;
+        height: 45px !important;
+        object-fit: contain !important;
     }
-    .header div:last-child {
-        width: auto !important;
+    .header-center {
+        position: absolute !important;
+        left: 50% !important;
+        top: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        font-size: 22px !important;
+        margin: 0 !important;
+        transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1) !important;
+        opacity: 1 !important;
+        white-space: nowrap !important;
+    }
+    .header-nav {
+        position: absolute !important;
+        right: 55px !important;
+        top: 50% !important;
+        transform: translate(30px, -50%) !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
         display: flex !important;
-        justify-content: center !important;
-        flex-wrap: nowrap !important;
+        align-items: center !important;
         gap: 18px !important;
+        transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1) !important;
     }
     .header a {
         margin: 0 !important;
@@ -2562,7 +2586,45 @@ body.no-scroll {
         white-space: nowrap !important;
     }
     .header-account-link-old {
-        margin-left: 10px !important;
+        margin-left: 0 !important;
+    }
+    .burger-btn {
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: space-between !important;
+        width: 24px !important;
+        height: 16px !important;
+        background: transparent !important;
+        border: none !important;
+        cursor: pointer !important;
+        padding: 0 !important;
+        z-index: 1001 !important;
+        position: relative !important;
+    }
+    .burger-bar {
+        width: 100% !important;
+        height: 2px !important;
+        background-color: #fff !important;
+        transition: transform 0.3s ease, opacity 0.3s ease !important;
+        display: block !important;
+    }
+    .header.menu-open .header-center {
+        transform: translate(-150%, -50%) !important;
+        opacity: 0 !important;
+    }
+    .header.menu-open .header-nav {
+        transform: translate(0, -50%) !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+    }
+    .header.menu-open .burger-bar:nth-child(1) {
+        transform: translateY(7px) rotate(45deg) !important;
+    }
+    .header.menu-open .burger-bar:nth-child(2) {
+        opacity: 0 !important;
+    }
+    .header.menu-open .burger-bar:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg) !important;
     }
 }
 
