@@ -12,7 +12,9 @@ export function Header() {
 
   return (
     <div className={`header ${isMenuOpen ? 'menu-open' : ''}`}>
-      <img className="header-logo" src="/images/logo/LuxAutoImg3.png" alt="LuxAuto Logo" />
+      <Link href="/" onClick={() => setIsMenuOpen(false)} style={{ display: 'flex', alignItems: 'center' }}>
+        <img className="header-logo" src="/images/logo/LuxAutoImg3.png" alt="LuxAuto Logo" />
+      </Link>
       <h2 className="header-center">Lux Auto</h2>
       
       <div className="header-nav">
