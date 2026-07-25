@@ -1617,6 +1617,7 @@ body.no-scroll {
 
 
 
+
 /* ==========================================================================
    CAR PAGE SPECIFIC STYLES (RESTORED FROM OLD VERSION WITH SHIELDING OVERRIDES)
    ========================================================================= */
@@ -2642,11 +2643,19 @@ body.no-scroll {
 @media (max-width: 768px) {
     /* Homepage Hero */
     .hero {
-        padding: 135px 12px 25px !important; /* Pushed content down to expose shop sign */
+        padding: 125px 12px 25px !important; /* Pushed content down to expose shop sign */
         margin: 15px 12px 25px 12px !important; /* 12px left/right margins */
         border-radius: 16px !important;
         overflow: hidden !important;
         background-position: center top !important; /* Align building sign at the top */
+    }
+    .hero .badge {
+        position: absolute !important;
+        top: 25px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        margin: 0 !important;
+        white-space: nowrap !important;
     }
     .hero h1 {
         font-size: 24px !important; /* Smaller header font size */
