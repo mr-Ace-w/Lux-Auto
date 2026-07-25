@@ -1618,6 +1618,7 @@ body.no-scroll {
 
 
 
+
 /* ==========================================================================
    CAR PAGE SPECIFIC STYLES (RESTORED FROM OLD VERSION WITH SHIELDING OVERRIDES)
    ========================================================================= */
@@ -3428,5 +3429,88 @@ footer h3 {
     
     .brand-model-menu {
         width: 100% !important;
+    }
+}
+
+/* SEO Content Section Styles */
+.seo-text-section {
+    padding: 65px 24px;
+    background: #fcfcfc !important;
+    border-top: 1px solid #eee !important;
+    color: #333 !important;
+    width: 100% !important;
+}
+
+.seo-container {
+    max-width: 1000px !important;
+    margin: 0 auto !important;
+}
+
+.seo-container h2 {
+    font-size: 26px !important;
+    font-weight: 800 !important;
+    color: #111 !important;
+    margin-bottom: 20px !important;
+    letter-spacing: -0.5px !important;
+}
+
+.seo-container h3 {
+    font-size: 20px !important;
+    font-weight: 700 !important;
+    color: #222 !important;
+    margin-top: 35px !important;
+    margin-bottom: 15px !important;
+}
+
+.seo-container p {
+    font-size: 15.5px !important;
+    line-height: 1.7 !important;
+    color: #444 !important;
+    margin-bottom: 20px !important;
+}
+
+.seo-container ul {
+    margin-left: 20px !important;
+    margin-bottom: 25px !important;
+    list-style-type: disc !important;
+}
+
+.seo-container li {
+    font-size: 15.5px !important;
+    line-height: 1.7 !important;
+    color: #444 !important;
+    margin-bottom: 10px !important;
+}
+
+.seo-container a {
+    color: #111 !important;
+    font-weight: 700 !important;
+    text-decoration: underline !important;
+    text-underline-offset: 3px !important;
+    transition: color 0.2s ease !important;
+}
+
+.seo-container a:hover {
+    color: #ffd000 !important;
+}
+
+@media (max-width: 768px) {
+    .seo-text-section {
+        padding: 40px 16px !important;
+    }
+    
+    .seo-container h2 {
+        font-size: 21px !important;
+    }
+    
+    .seo-container h3 {
+        font-size: 17px !important;
+        margin-top: 25px !important;
+    }
+    
+    .seo-container p,
+    .seo-container li {
+        font-size: 14.5px !important;
+        line-height: 1.6 !important;
     }
 }
