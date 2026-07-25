@@ -1622,6 +1622,7 @@ body.no-scroll {
 
 
 
+
 /* ==========================================================================
    CAR PAGE SPECIFIC STYLES (RESTORED FROM OLD VERSION WITH SHIELDING OVERRIDES)
    ========================================================================= */
@@ -3468,54 +3469,82 @@ footer h3 {
     }
 }
 
-/* SEO Content Section Styles */
+/* SEO Content Section Styles (Optimized collapse, 90% width, 14px text size) */
 .seo-text-section {
-    padding: 65px 24px;
-    background: #fcfcfc !important;
-    border-top: 1px solid #eee !important;
+    padding: 40px 24px !important;
+    background: #fdfdfd !important;
+    border-top: 1px solid #eaeaea !important;
     color: #333 !important;
     width: 100% !important;
+    position: relative !important;
 }
 
 .seo-container {
-    max-width: 1000px !important;
+    max-width: 850px !important; /* Narrower width for better reading proportions */
+    width: 90% !important; /* Takes exactly 90% of layout width */
     margin: 0 auto !important;
+    position: relative !important;
+    max-height: none;
+    overflow: visible;
+    transition: max-height 0.4s ease-in-out !important;
+}
+
+/* Collapsed state constraints */
+.seo-text-section.collapsed .seo-container {
+    max-height: 160px !important;
+    overflow: hidden !important;
+}
+
+.seo-fade-overlay {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: linear-gradient(to top, #fdfdfd, rgba(253, 253, 253, 0)) !important;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.seo-text-section.collapsed .seo-fade-overlay {
+    display: block !important;
 }
 
 .seo-container h2 {
-    font-size: 26px !important;
+    font-size: 22px !important; /* Slightly smaller h2 */
     font-weight: 800 !important;
     color: #111 !important;
-    margin-bottom: 20px !important;
+    margin-bottom: 15px !important;
     letter-spacing: -0.5px !important;
 }
 
 .seo-container h3 {
-    font-size: 20px !important;
+    font-size: 17px !important; /* Slightly smaller h3 */
     font-weight: 700 !important;
     color: #222 !important;
-    margin-top: 35px !important;
-    margin-bottom: 15px !important;
+    margin-top: 25px !important;
+    margin-bottom: 12px !important;
 }
 
 .seo-container p {
-    font-size: 15.5px !important;
-    line-height: 1.7 !important;
-    color: #444 !important;
-    margin-bottom: 20px !important;
+    font-size: 14px !important; /* Tighter font size */
+    line-height: 1.6 !important;
+    color: #555 !important;
+    margin-bottom: 15px !important;
 }
 
 .seo-container ul {
     margin-left: 20px !important;
-    margin-bottom: 25px !important;
+    margin-bottom: 20px !important;
     list-style-type: disc !important;
 }
 
 .seo-container li {
-    font-size: 15.5px !important;
-    line-height: 1.7 !important;
-    color: #444 !important;
-    margin-bottom: 10px !important;
+    font-size: 14px !important; /* Tighter font size */
+    line-height: 1.6 !important;
+    color: #555 !important;
+    margin-bottom: 8px !important;
 }
 
 .seo-container a {
@@ -3530,23 +3559,52 @@ footer h3 {
     color: #ffd000 !important;
 }
 
+.seo-btn-wrapper {
+    display: flex !important;
+    justify-content: center !important;
+    margin-top: 15px !important;
+    position: relative !important;
+    z-index: 20 !important;
+}
+
+.seo-toggle-btn {
+    background: none !important;
+    border: 1px solid #111 !important;
+    color: #111 !important;
+    font-weight: 700 !important;
+    padding: 8px 22px !important;
+    border-radius: 20px !important;
+    font-size: 13px !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+}
+
+.seo-toggle-btn:hover {
+    background: #111 !important;
+    color: #fff !important;
+}
+
 @media (max-width: 768px) {
     .seo-text-section {
-        padding: 40px 16px !important;
+        padding: 30px 16px !important;
+    }
+    
+    .seo-container {
+        width: 95% !important;
     }
     
     .seo-container h2 {
-        font-size: 21px !important;
+        font-size: 19px !important;
     }
     
     .seo-container h3 {
-        font-size: 17px !important;
-        margin-top: 25px !important;
+        font-size: 15px !important;
+        margin-top: 20px !important;
     }
     
     .seo-container p,
     .seo-container li {
-        font-size: 14.5px !important;
-        line-height: 1.6 !important;
+        font-size: 13.5px !important;
+        line-height: 1.5 !important;
     }
 }

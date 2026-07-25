@@ -241,7 +241,7 @@ export default async function Home() {
           <Catalog cars={cars} />
         </div>
 
-        <section className="seo-text-section">
+        <section className="seo-text-section collapsed" id="seo-section">
           <div className="seo-container">
             <h2>Автосалон Lux Auto в Теребовлі — ваш надійний автомайданчик</h2>
             <p>
@@ -294,7 +294,20 @@ export default async function Home() {
               Для того щоб почати підбір, перейдіть до нашого <a href="#catalog">каталогу автомобілів</a>, дізнайтеся більше <a href="/about">про нашу компанію</a> або зв'яжіться з нашими фахівцями через розділ <a href="/contacts">контакти</a>. 
               Завітайте до <strong>Люкс Авто Теребовля</strong> особисто — ми допоможемо здійснити вашу мрію про надійне авто!
             </p>
+            <div className="seo-fade-overlay"></div>
           </div>
+          <div className="seo-btn-wrapper">
+            <button id="seo-toggle-btn" className="seo-toggle-btn" type="button">
+              Читати повністю
+            </button>
+          </div>
+          <script dangerouslySetInnerHTML={{ __html: `
+            document.getElementById('seo-toggle-btn').addEventListener('click', function() {
+              var sec = document.getElementById('seo-section');
+              sec.classList.toggle('collapsed');
+              this.textContent = sec.classList.contains('collapsed') ? 'Читати повністю' : 'Згорнути';
+            });
+          `}} />
         </section>
       </main>
       <Footer />
