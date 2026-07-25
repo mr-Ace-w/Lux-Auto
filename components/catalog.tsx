@@ -5,53 +5,139 @@ import type { Car } from '@/lib/types';
 import { CarCard } from './car-card';
 
 export function Catalog({ cars }: { cars: Car[] }) {
-  const [brand, setBrand] = useState('');
+  // Applied filters states
+  const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
+  const [selectedModels, setSelectedModels] = useState<string[]>([]);
   const [priceFrom, setPriceFrom] = useState('');
   const [priceTo, setPriceTo] = useState('');
   const [yearFrom, setYearFrom] = useState('');
   const [yearTo, setYearTo] = useState('');
   const [mileageFrom, setMileageFrom] = useState('');
   const [mileageTo, setMileageTo] = useState('');
-  const [fuel, setFuel] = useState('');
+  const [selectedFuels, setSelectedFuels] = useState<string[]>([]);
+  const [selectedTransmissions, setSelectedTransmissions] = useState<string[]>([]);
   const [sort, setSort] = useState('new');
   const [limit, setLimit] = useState(16);
+
+  // Dummy dropdown state to match Auto.ria
+  const [selectedTransportType, setSelectedTransportType] = useState('Легкові');
+  const [tempTransportType, setTempTransportType] = useState('Легкові');
+
+  // Dropdown open states
+  const [transportTypeDropdownOpen, setTransportTypeDropdownOpen] = useState(false);
+  const [brandModelDropdownOpen, setBrandModelDropdownOpen] = useState(false);
+  const [priceDropdownOpen, setPriceDropdownOpen] = useState(false);
   const [yearDropdownOpen, setYearDropdownOpen] = useState(false);
+  const [fuelDropdownOpen, setFuelDropdownOpen] = useState(false);
+  const [transmissionDropdownOpen, setTransmissionDropdownOpen] = useState(false);
+
+  // Temporary/unapplied states for dropdowns
+  const [tempBrands, setTempBrands] = useState<string[]>([]);
+  const [tempModels, setTempModels] = useState<string[]>([]);
+  const [brandSearchQuery, setBrandSearchQuery] = useState('');
+  const [modelSearchQuery, setModelSearchQuery] = useState('');
+
+  const [tempPriceFrom, setTempPriceFrom] = useState('');
+  const [tempPriceTo, setTempPriceTo] = useState('');
+
   const [tempYearFrom, setTempYearFrom] = useState('');
   const [tempYearTo, setTempYearTo] = useState('');
 
+  const [tempFuels, setTempFuels] = useState<string[]>([]);
+  const [tempTransmissions, setTempTransmissions] = useState<string[]>([]);
+
+  // Unique options extracted from available cars
+  const brandOptions = useMemo(() => {
+    return Array.from(new Set(cars.map((car) => car.brand).filter(Boolean))).sort((a, b) => a.localeCompare(b));
+  }, [cars]);
+
+  const modelOptions = useMemo(() => {
+    if (tempBrands.length === 0) return [];
+    return Array.from(
+      new Set(
+        cars
+          .filter((car) => tempBrands.includes(car.brand))
+          .map((car) => car.model)
+          .filter(Boolean)
+      )
+    ).sort((a, b) => a.localeCompare(b));
+  }, [cars, tempBrands]);
+
+  const fuelOptions = useMemo(() => {
+    return Array.from(new Set(cars.map((car) => car.fuel).filter(Boolean))).sort((a, b) => a.localeCompare(b));
+  }, [cars]);
+
+  const transmissionOptions = useMemo(() => {
+    return Array.from(new Set(cars.map((car) => car.transmission).filter(Boolean))).sort((a, b) => a.localeCompare(b));
+  }, [cars]);
+
   const years = useMemo(() => {
     const arr = [];
-    for (let y = 2026; y >= 1990; y--) {
+    for (let y = new Date().getFullYear() + 1; y >= 1990; y--) {
       arr.push(y);
     }
     return arr;
   }, []);
 
+  const transportTypeOptions = ['Всі типи транспорту', 'Легкові', 'Мото', 'Вантажівки', 'Причепи', 'Спецтехніка', 'Сільгосптехніка'];
+
+  // Sync temp state when opening dropdowns
+  const openTransportTypeDropdown = () => {
+    setTempTransportType(selectedTransportType);
+    setTransportTypeDropdownOpen(true);
+  };
+
+  const openBrandModelDropdown = () => {
+    setTempBrands(selectedBrands);
+    setTempModels(selectedModels);
+    setBrandSearchQuery('');
+    setModelSearchQuery('');
+    setBrandModelDropdownOpen(true);
+  };
+
+  const openPriceDropdown = () => {
+    setTempPriceFrom(priceFrom);
+    setTempPriceTo(priceTo);
+    setPriceDropdownOpen(true);
+  };
+
+  const openYearDropdown = () => {
+    setTempYearFrom(yearFrom);
+    setTempYearTo(yearTo);
+    setYearDropdownOpen(true);
+  };
+
+  const openFuelDropdown = () => {
+    setTempFuels(selectedFuels);
+    setFuelDropdownOpen(true);
+  };
+
+  const openTransmissionDropdown = () => {
+    setTempTransmissions(selectedTransmissions);
+    setTransmissionDropdownOpen(true);
+  };
+
+  // Click outside listener
   useEffect(() => {
-    if (!yearDropdownOpen) return;
     function handleOutsideClick(event: MouseEvent) {
       const target = event.target as HTMLElement;
-      if (!target.closest('.year-dropdown-container')) {
-        setYearDropdownOpen(false);
-      }
+      if (!target.closest('.transport-type-field')) setTransportTypeDropdownOpen(false);
+      if (!target.closest('.brand-model-field')) setBrandModelDropdownOpen(false);
+      if (!target.closest('.price-field')) setPriceDropdownOpen(false);
+      if (!target.closest('.year-dropdown-field')) setYearDropdownOpen(false);
+      if (!target.closest('.fuel-field')) setFuelDropdownOpen(false);
+      if (!target.closest('.transmission-field')) setTransmissionDropdownOpen(false);
     }
     document.addEventListener('click', handleOutsideClick);
     return () => document.removeEventListener('click', handleOutsideClick);
-  }, [yearDropdownOpen]);
+  }, []);
 
-  const toggleYearDropdown = () => {
-    if (!yearDropdownOpen) {
-      setTempYearFrom(yearFrom);
-      setTempYearTo(yearTo);
-    }
-    setYearDropdownOpen(!yearDropdownOpen);
-  };
-
+  // Reset limit when filters change
   useEffect(() => {
     setLimit(16);
-  }, [brand, priceFrom, priceTo, yearFrom, yearTo, mileageFrom, mileageTo, fuel, sort]);
+  }, [selectedBrands, selectedModels, priceFrom, priceTo, yearFrom, yearTo, mileageFrom, mileageTo, selectedFuels, selectedTransmissions, sort]);
 
-
+  // Card reveal observer
   useEffect(() => {
     const cards = document.querySelectorAll('.car-card');
     const cardsObserver = new IntersectionObserver(
@@ -69,26 +155,71 @@ export function Catalog({ cars }: { cars: Car[] }) {
           }
         });
       },
-      {
-        threshold: 0.1,
-      }
+      { threshold: 0.1 }
     );
+    cards.forEach((card) => cardsObserver.observe(card));
+    return () => cardsObserver.disconnect();
+  }, [sort, selectedBrands, selectedModels, priceFrom, priceTo, yearFrom, yearTo, mileageFrom, mileageTo, selectedFuels, selectedTransmissions, limit]);
 
-    cards.forEach((card) => {
-      cardsObserver.observe(card);
+  // Helper toggle functions
+  const toggleBrand = (b: string) => {
+    setTempBrands(prev => {
+      const next = prev.includes(b) ? prev.filter(x => x !== b) : [...prev, b];
+      setTempModels(mPrev => mPrev.filter(m => 
+        cars.some(car => next.includes(car.brand) && car.model === m)
+      ));
+      return next;
     });
+  };
 
-    return () => {
-      cardsObserver.disconnect();
-    };
-  }, [sort, brand, priceFrom, priceTo, yearFrom, yearTo, mileageFrom, mileageTo, fuel, limit]);
+  const toggleModel = (m: string) => {
+    setTempModels(prev => prev.includes(m) ? prev.filter(x => x !== m) : [...prev, m]);
+  };
 
-  const fuelOptions = useMemo(() => {
-    return Array.from(new Set(cars.map((car) => car.fuel).filter(Boolean))).sort((a, b) => a.localeCompare(b));
-  }, [cars]);
+  const toggleFuel = (f: string) => {
+    setTempFuels(prev => prev.includes(f) ? prev.filter(x => x !== f) : [...prev, f]);
+  };
 
+  const toggleTransmission = (t: string) => {
+    setTempTransmissions(prev => prev.includes(t) ? prev.filter(x => x !== t) : [...prev, t]);
+  };
+
+  // Header display labels
+  const getBrandModelLabel = () => {
+    if (selectedBrands.length === 0) return 'Марка, Модель';
+    if (selectedBrands.length === 1) {
+      const brandName = selectedBrands[0];
+      const brandModels = selectedModels.filter(m => 
+        cars.some(car => car.brand === brandName && car.model === m)
+      );
+      if (brandModels.length === 0) return brandName;
+      return `${brandName} (${brandModels.join(', ')})`;
+    }
+    return `Обрано: ${selectedBrands.length} марок`;
+  };
+
+  const getPriceLabel = () => {
+    if (!priceFrom && !priceTo) return 'Вартість';
+    return `${priceFrom ? `від $${Number(priceFrom).toLocaleString('uk-UA')}` : ''} ${priceTo ? `до $${Number(priceTo).toLocaleString('uk-UA')}` : ''}`.trim();
+  };
+
+  const getYearLabel = () => {
+    if (!yearFrom && !yearTo) return 'Рік випуску';
+    return `${yearFrom ? `від ${yearFrom}` : ''} ${yearTo ? `до ${yearTo}` : ''}`.trim();
+  };
+
+  const getFuelLabel = () => {
+    if (selectedFuels.length === 0) return 'Пальне';
+    return selectedFuels.join(', ');
+  };
+
+  const getTransmissionLabel = () => {
+    if (selectedTransmissions.length === 0) return 'Коробка передач';
+    return selectedTransmissions.join(', ');
+  };
+
+  // Filter cars logic
   const filtered = useMemo(() => {
-    const term = brand.trim().toLowerCase();
     const minPrice = priceFrom === '' ? null : Number(priceFrom);
     const maxPrice = priceTo === '' ? null : Number(priceTo);
     const minYear = yearFrom === '' ? null : Number(yearFrom);
@@ -97,15 +228,32 @@ export function Catalog({ cars }: { cars: Car[] }) {
     const maxMileage = mileageTo === '' ? null : Number(mileageTo);
 
     const result = cars.filter((car) => {
-      const haystack = `${car.brand} ${car.model}`.toLowerCase();
-      if (term && !haystack.includes(term)) return false;
+      // 1. Brands & Models Multi-select Filter
+      if (selectedBrands.length > 0) {
+        if (!selectedBrands.includes(car.brand)) return false;
+        if (selectedModels.length > 0 && !selectedModels.includes(car.model)) return false;
+      }
+      // 2. Price Range
       if (minPrice !== null && car.price < minPrice) return false;
       if (maxPrice !== null && car.price > maxPrice) return false;
+      // 3. Year Range
       if (minYear !== null && car.year < minYear) return false;
       if (maxYear !== null && car.year > maxYear) return false;
+      // 4. Mileage Range
       if (minMileage !== null && car.mileage < minMileage) return false;
       if (maxMileage !== null && car.mileage > maxMileage) return false;
-      if (fuel && car.fuel.toLowerCase() !== fuel.toLowerCase()) return false;
+      // 5. Fuel Multi-select
+      if (selectedFuels.length > 0) {
+        const carFuel = car.fuel.toLowerCase();
+        const match = selectedFuels.some(f => f.toLowerCase() === carFuel);
+        if (!match) return false;
+      }
+      // 6. Transmission Multi-select
+      if (selectedTransmissions.length > 0) {
+        const carTrans = car.transmission.toLowerCase();
+        const match = selectedTransmissions.some(t => t.toLowerCase() === carTrans);
+        if (!match) return false;
+      }
       return true;
     });
 
@@ -130,66 +278,195 @@ export function Catalog({ cars }: { cars: Car[] }) {
           return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
       }
     });
-  }, [brand, cars, fuel, mileageFrom, mileageTo, priceFrom, priceTo, sort, yearFrom, yearTo]);
+  }, [selectedBrands, selectedModels, cars, selectedFuels, selectedTransmissions, mileageFrom, mileageTo, priceFrom, priceTo, sort, yearFrom, yearTo]);
 
   const displayedCars = useMemo(() => {
     return filtered.slice(0, limit);
   }, [filtered, limit]);
 
   const resetFilters = () => {
-    setBrand('');
+    setSelectedBrands([]);
+    setSelectedModels([]);
+    setSelectedFuels([]);
+    setSelectedTransmissions([]);
+    setSelectedTransportType('Легкові');
     setPriceFrom('');
     setPriceTo('');
     setYearFrom('');
     setYearTo('');
-    setTempYearFrom('');
-    setTempYearTo('');
     setMileageFrom('');
     setMileageTo('');
-    setFuel('');
     setSort('new');
   };
+
+  const filteredBrandsList = brandOptions.filter(b => 
+    b.toLowerCase().includes(brandSearchQuery.toLowerCase())
+  );
+
+  const filteredModelsList = modelOptions.filter(m => 
+    m.toLowerCase().includes(modelSearchQuery.toLowerCase())
+  );
 
   return (
     <>
       <div className="filters">
-        <div className="filters-row">
-          <div className="filter-field">
-            <label>Марка</label>
-            <Autocomplete value={brand} onChange={setBrand} options={['Audi', 'BMW', 'Mercedes-Benz', 'Tesla', 'Honda', 'Jeep', 'Land Rover', 'Toyota', 'Volkswagen', 'Ford', 'Hyundai', 'Kia', 'Nissan', 'Skoda', 'Renault', 'Lexus', 'Porsche', 'Mazda', 'Volvo', 'Opel', 'Chevrolet', 'Mitsubishi', 'Dodge', 'Aston Martin']} placeholder="BMW, Audi, VW" />
-          </div>
-          <div className="filter-field">
-            <label>Ціна від</label>
-            <input type="number" value={priceFrom} onChange={(e) => setPriceFrom(e.target.value)} placeholder="5000" />
-          </div>
-          <div className="filter-field">
-            <label>Ціна до</label>
-            <input type="number" value={priceTo} onChange={(e) => setPriceTo(e.target.value)} placeholder="20000" />
-          </div>
+        <div className="filters-grid">
           
-          <div className="filter-field year-dropdown-field">
-            <label>Рік випуску</label>
-            <div className="year-dropdown-container">
+          {/* A. Transport Type Dropdown */}
+          <div className="filter-field transport-type-field">
+            <label>Тип транспорту</label>
+            <div className="dropdown-container">
               <button 
                 type="button" 
-                className="year-dropdown-trigger-btn"
-                onClick={toggleYearDropdown}
+                className="dropdown-trigger-btn active"
+                onClick={() => transportTypeDropdownOpen ? setTransportTypeDropdownOpen(false) : openTransportTypeDropdown()}
               >
-                {yearFrom || yearTo ? (
-                  `${yearFrom ? `від ${yearFrom}` : ''} ${yearTo ? `до ${yearTo}` : ''}`
-                ) : (
-                  'Рік випуску'
-                )}
-                <span className={`arrow ${yearDropdownOpen ? 'open' : ''}`}>▼</span>
+                <span className="trigger-label">{selectedTransportType}</span>
+                <span className="arrow">▼</span>
+              </button>
+
+              {transportTypeDropdownOpen && (
+                <div className="dropdown-menu transport-type-menu">
+                  <div className="options-list">
+                    {transportTypeOptions.map(t => (
+                      <label key={t} className="option-radio-label">
+                        <input 
+                          type="radio" 
+                          name="transportType"
+                          checked={tempTransportType === t} 
+                          onChange={() => setTempTransportType(t)}
+                        />
+                        <span>{t}</span>
+                      </label>
+                    ))}
+                  </div>
+                  <div className="dropdown-footer">
+                    <button 
+                      type="button" 
+                      className="apply-btn"
+                      onClick={() => {
+                        setSelectedTransportType(tempTransportType);
+                        setTransportTypeDropdownOpen(false);
+                      }}
+                    >
+                      Застосувати
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+          
+          {/* 1. Brand & Model Dropdown */}
+          <div className="filter-field brand-model-field">
+            <label>Марка, Модель</label>
+            <div className="dropdown-container">
+              <button 
+                type="button" 
+                className={`dropdown-trigger-btn ${selectedBrands.length > 0 ? 'active' : ''}`}
+                onClick={() => brandModelDropdownOpen ? setBrandModelDropdownOpen(false) : openBrandModelDropdown()}
+              >
+                <span className="trigger-label">{getBrandModelLabel()}</span>
+                <span className="arrow">▼</span>
+              </button>
+
+              {brandModelDropdownOpen && (
+                <div className="dropdown-menu brand-model-menu">
+                  <div className="dropdown-columns">
+                    {/* Brand column */}
+                    <div className="dropdown-column">
+                      <div className="column-header">Марка</div>
+                      <input 
+                        type="text" 
+                        className="dropdown-search" 
+                        placeholder="Пошук марки"
+                        value={brandSearchQuery}
+                        onChange={(e) => setBrandSearchQuery(e.target.value)}
+                      />
+                      <div className="options-list">
+                        {filteredBrandsList.map(b => (
+                          <label key={b} className="option-checkbox-label">
+                            <input 
+                              type="checkbox" 
+                              checked={tempBrands.includes(b)} 
+                              onChange={() => toggleBrand(b)}
+                            />
+                            <span>{b}</span>
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Model column */}
+                    <div className="dropdown-column">
+                      <div className="column-header">Модель</div>
+                      <input 
+                        type="text" 
+                        className="dropdown-search" 
+                        placeholder="Пошук моделі"
+                        value={modelSearchQuery}
+                        onChange={(e) => setModelSearchQuery(e.target.value)}
+                        disabled={tempBrands.length === 0}
+                      />
+                      <div className="options-list">
+                        {tempBrands.length === 0 ? (
+                          <div className="empty-message">Оберіть марку спочатку</div>
+                        ) : filteredModelsList.length === 0 ? (
+                          <div className="empty-message">Немає моделей</div>
+                        ) : (
+                          filteredModelsList.map(m => (
+                            <label key={m} className="option-checkbox-label">
+                              <input 
+                                type="checkbox" 
+                                checked={tempModels.includes(m)} 
+                                onChange={() => toggleModel(m)}
+                              />
+                              <span>{m}</span>
+                            </label>
+                          ))
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="dropdown-footer">
+                    <button 
+                      type="button" 
+                      className="apply-btn"
+                      onClick={() => {
+                        setSelectedBrands(tempBrands);
+                        setSelectedModels(tempModels);
+                        setBrandModelDropdownOpen(false);
+                      }}
+                    >
+                      Застосувати
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* 2. Year Dropdown */}
+          <div className="filter-field year-dropdown-field">
+            <label>Рік випуску</label>
+            <div className="dropdown-container">
+              <button 
+                type="button" 
+                className={`dropdown-trigger-btn ${yearFrom || yearTo ? 'active' : ''}`}
+                onClick={() => yearDropdownOpen ? setYearDropdownOpen(false) : openYearDropdown()}
+              >
+                <span className="trigger-label">{getYearLabel()}</span>
+                <span className="arrow">▼</span>
               </button>
 
               {yearDropdownOpen && (
-                <div className="year-dropdown-menu">
-                  <div className="year-dropdown-columns">
-                    <div className="year-column">
+                <div className="dropdown-menu year-menu">
+                  <div className="dropdown-columns">
+                    {/* Year From */}
+                    <div className="dropdown-column">
                       <div className="column-header">Від</div>
-                      <div className="year-options-list">
-                        <label className="year-option">
+                      <div className="options-list">
+                        <label className="option-radio-label">
                           <input 
                             type="radio" 
                             name="tempYearFrom" 
@@ -199,7 +476,7 @@ export function Catalog({ cars }: { cars: Car[] }) {
                           <span>Неважливо</span>
                         </label>
                         {years.map(y => (
-                          <label key={`from-${y}`} className="year-option">
+                          <label key={`from-${y}`} className="option-radio-label">
                             <input 
                               type="radio" 
                               name="tempYearFrom" 
@@ -213,10 +490,11 @@ export function Catalog({ cars }: { cars: Car[] }) {
                       </div>
                     </div>
 
-                    <div className="year-column">
+                    {/* Year To */}
+                    <div className="dropdown-column">
                       <div className="column-header">До</div>
-                      <div className="year-options-list">
-                        <label className="year-option">
+                      <div className="options-list">
+                        <label className="option-radio-label">
                           <input 
                             type="radio" 
                             name="tempYearTo" 
@@ -226,7 +504,7 @@ export function Catalog({ cars }: { cars: Car[] }) {
                           <span>Неважливо</span>
                         </label>
                         {years.map(y => (
-                          <label key={`to-${y}`} className="year-option">
+                          <label key={`to-${y}`} className="option-radio-label">
                             <input 
                               type="radio" 
                               name="tempYearTo" 
@@ -241,10 +519,10 @@ export function Catalog({ cars }: { cars: Car[] }) {
                     </div>
                   </div>
 
-                  <div className="year-dropdown-footer">
+                  <div className="dropdown-footer">
                     <button 
                       type="button" 
-                      className="year-apply-btn"
+                      className="apply-btn"
                       onClick={() => {
                         setYearFrom(tempYearFrom);
                         setYearTo(tempYearTo);
@@ -258,29 +536,144 @@ export function Catalog({ cars }: { cars: Car[] }) {
               )}
             </div>
           </div>
-        </div>
 
-        <div className="filters-row">
-          <div className="filter-field">
-            <label>Пробіг від</label>
-            <input type="number" value={mileageFrom} onChange={(e) => setMileageFrom(e.target.value)} placeholder="10000" />
+          {/* 3. Price (Вартість) Dropdown */}
+          <div className="filter-field price-field">
+            <label>Вартість</label>
+            <div className="dropdown-container">
+              <button 
+                type="button" 
+                className={`dropdown-trigger-btn ${priceFrom || priceTo ? 'active' : ''}`}
+                onClick={() => priceDropdownOpen ? setPriceDropdownOpen(false) : openPriceDropdown()}
+              >
+                <span className="trigger-label">{getPriceLabel()}</span>
+                <span className="arrow">▼</span>
+              </button>
+
+              {priceDropdownOpen && (
+                <div className="dropdown-menu price-menu">
+                  <div className="price-inputs">
+                    <input 
+                      type="number" 
+                      placeholder="Ціна від ($)" 
+                      value={tempPriceFrom}
+                      onChange={(e) => setTempPriceFrom(e.target.value)}
+                    />
+                    <input 
+                      type="number" 
+                      placeholder="Ціна до ($)" 
+                      value={tempPriceTo}
+                      onChange={(e) => setTempPriceTo(e.target.value)}
+                    />
+                  </div>
+                  <div className="dropdown-footer">
+                    <button 
+                      type="button" 
+                      className="apply-btn"
+                      onClick={() => {
+                        setPriceFrom(tempPriceFrom);
+                        setPriceTo(tempPriceTo);
+                        setPriceDropdownOpen(false);
+                      }}
+                    >
+                      Застосувати
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
-          <div className="filter-field">
-            <label>Пробіг до</label>
-            <input type="number" value={mileageTo} onChange={(e) => setMileageTo(e.target.value)} placeholder="200000" />
+
+          {/* 4. Fuel Dropdown */}
+          <div className="filter-field fuel-field">
+            <label>Пальне</label>
+            <div className="dropdown-container">
+              <button 
+                type="button" 
+                className={`dropdown-trigger-btn ${selectedFuels.length > 0 ? 'active' : ''}`}
+                onClick={() => fuelDropdownOpen ? setFuelDropdownOpen(false) : openFuelDropdown()}
+              >
+                <span className="trigger-label">{getFuelLabel()}</span>
+                <span className="arrow">▼</span>
+              </button>
+
+              {fuelDropdownOpen && (
+                <div className="dropdown-menu fuel-menu">
+                  <div className="options-list">
+                    {fuelOptions.map(f => (
+                      <label key={f} className="option-checkbox-label">
+                        <input 
+                          type="checkbox" 
+                          checked={tempFuels.includes(f)} 
+                          onChange={() => toggleFuel(f)}
+                        />
+                        <span>{f}</span>
+                      </label>
+                    ))}
+                  </div>
+                  <div className="dropdown-footer">
+                    <button 
+                      type="button" 
+                      className="apply-btn"
+                      onClick={() => {
+                        setSelectedFuels(tempFuels);
+                        setFuelDropdownOpen(false);
+                      }}
+                    >
+                      Застосувати
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
-          <div className="filter-field">
-            <label>Паливо</label>
-            <select value={fuel} onChange={(e) => setFuel(e.target.value)}>
-              <option value="">Усі</option>
-              {fuelOptions.map((option) => (
-                <option key={option} value={option}>
-                  {option}
-                </option>
-              ))}
-            </select>
+
+          {/* 5. Transmission Dropdown */}
+          <div className="filter-field transmission-field">
+            <label>Коробка передач</label>
+            <div className="dropdown-container">
+              <button 
+                type="button" 
+                className={`dropdown-trigger-btn ${selectedTransmissions.length > 0 ? 'active' : ''}`}
+                onClick={() => transmissionDropdownOpen ? setTransmissionDropdownOpen(false) : openTransmissionDropdown()}
+              >
+                <span className="trigger-label">{getTransmissionLabel()}</span>
+                <span className="arrow">▼</span>
+              </button>
+
+              {transmissionDropdownOpen && (
+                <div className="dropdown-menu transmission-menu">
+                  <div className="options-list">
+                    {transmissionOptions.map(t => (
+                      <label key={t} className="option-checkbox-label">
+                        <input 
+                          type="checkbox" 
+                          checked={tempTransmissions.includes(t)} 
+                          onChange={() => toggleTransmission(t)}
+                        />
+                        <span>{t}</span>
+                      </label>
+                    ))}
+                  </div>
+                  <div className="dropdown-footer">
+                    <button 
+                      type="button" 
+                      className="apply-btn"
+                      onClick={() => {
+                        setSelectedTransmissions(tempTransmissions);
+                        setTransmissionDropdownOpen(false);
+                      }}
+                    >
+                      Застосувати
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
-          <div className="filter-field">
+
+          {/* Sort selection */}
+          <div className="filter-field sort-field">
             <label>Сортування</label>
             <select value={sort} onChange={(e) => setSort(e.target.value)}>
               <option value="new">Спочатку нові</option>
@@ -292,17 +685,22 @@ export function Catalog({ cars }: { cars: Car[] }) {
               <option value="mileage-down">Пробіг: більший</option>
             </select>
           </div>
-          <div className="filter-actions">
+
+          {/* Actions (Reset) */}
+          <div className="filter-field action-field">
+            <label style={{ visibility: 'hidden' }}>Дія</label>
             <button className="reset-btn" type="button" onClick={resetFilters}>
-              Скинути
+              Скинути фільтри
             </button>
           </div>
+
         </div>
       </div>
 
       <p className="car-count">
         В наявності <b>{filtered.length}</b> авто
       </p>
+      
       <div className="catalog">
         {displayedCars.map((car) => (
           <CarCard key={car.id} car={car} />
@@ -320,62 +718,6 @@ export function Catalog({ cars }: { cars: Car[] }) {
           </button>
         </div>
       )}
-
     </>
   );
 }
-
-type AutocompleteProps = {
-  value: string;
-  onChange: (value: string) => void;
-  options: string[];
-  placeholder: string;
-};
-
-function Autocomplete({ value, onChange, options, placeholder }: AutocompleteProps) {
-  const [open, setOpen] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    function handleOutside(e: MouseEvent) {
-      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
-        setOpen(false);
-      }
-    }
-    document.addEventListener('mousedown', handleOutside);
-    return () => document.removeEventListener('mousedown', handleOutside);
-  }, []);
-
-  const filtered = options.filter(opt =>
-    opt.toLowerCase().includes(value.toLowerCase())
-  );
-
-  return (
-    <div className="autocomplete-container" ref={containerRef}>
-      <input
-        type="text"
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        onFocus={() => setOpen(true)}
-        placeholder={placeholder}
-        autoComplete="off"
-      />
-      {open && filtered.length > 0 && (
-        <ul className="autocomplete-dropdown">
-          {filtered.map((opt) => (
-            <li
-              key={opt}
-              onClick={() => {
-                onChange(opt);
-                setOpen(false);
-              }}
-            >
-              {opt}
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
-  );
-}
-
