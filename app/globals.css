@@ -1623,6 +1623,7 @@ body.no-scroll {
 
 
 
+
 /* ==========================================================================
    CAR PAGE SPECIFIC STYLES (RESTORED FROM OLD VERSION WITH SHIELDING OVERRIDES)
    ========================================================================= */
@@ -3467,6 +3468,11 @@ footer h3 {
     .brand-model-menu {
         width: 100% !important;
     }
+}
+
+.filter-field label {
+    text-transform: none !important;
+    letter-spacing: normal !important;
 }
 
 /* SEO Content Section Styles (Optimized collapse, 90% width, 14px text size) */

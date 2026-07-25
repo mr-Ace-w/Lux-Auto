@@ -4,6 +4,11 @@ import { useEffect, useMemo, useState, useRef } from 'react';
 import type { Car } from '@/lib/types';
 import { CarCard } from './car-card';
 
+const formatOptionLabel = (text: string) => {
+  if (!text) return '';
+  return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
+};
+
 export function Catalog({ cars }: { cars: Car[] }) {
   // Applied filters states
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
@@ -19,9 +24,9 @@ export function Catalog({ cars }: { cars: Car[] }) {
   const [sort, setSort] = useState('new');
   const [limit, setLimit] = useState(16);
 
-  // Dummy dropdown state to match Auto.ria
-  const [selectedTransportType, setSelectedTransportType] = useState('Легкові');
-  const [tempTransportType, setTempTransportType] = useState('Легкові');
+  // State for Body Type dropdown (replacing Transport Type)
+  const [selectedTransportType, setSelectedTransportType] = useState('Всі типи кузова');
+  const [tempTransportType, setTempTransportType] = useState('Всі типи кузова');
 
   // Dropdown open states
   const [transportTypeDropdownOpen, setTransportTypeDropdownOpen] = useState(false);
@@ -81,7 +86,16 @@ export function Catalog({ cars }: { cars: Car[] }) {
     return arr;
   }, []);
 
-  const transportTypeOptions = ['Всі типи транспорту', 'Легкові', 'Мото', 'Вантажівки', 'Причепи', 'Спецтехніка', 'Сільгосптехніка'];
+  const transportTypeOptions = [
+    'Всі типи кузова', 
+    'Седан', 
+    'Позашляховик / Кросовер', 
+    'Хетчбек', 
+    'Універсал', 
+    'Мінівен', 
+    'Купе', 
+    'Кабріолет'
+  ];
   
   const sortOptions = [
     { value: 'new', label: 'Спочатку нові' },
@@ -228,12 +242,12 @@ export function Catalog({ cars }: { cars: Car[] }) {
 
   const getFuelLabel = () => {
     if (selectedFuels.length === 0) return 'Пальне';
-    return selectedFuels.join(', ');
+    return selectedFuels.map(f => formatOptionLabel(f)).join(', ');
   };
 
   const getTransmissionLabel = () => {
     if (selectedTransmissions.length === 0) return 'Коробка передач';
-    return selectedTransmissions.join(', ');
+    return selectedTransmissions.map(t => formatOptionLabel(t)).join(', ');
   };
 
   const getSortLabel = () => {
@@ -277,6 +291,32 @@ export function Catalog({ cars }: { cars: Car[] }) {
         const match = selectedTransmissions.some(t => t.toLowerCase() === carTrans);
         if (!match) return false;
       }
+      // 7. Body Type Filter
+      if (selectedTransportType !== 'Всі типи кузова') {
+        const carBody = car.body_type ? car.body_type.toLowerCase() : '';
+        const selectedBody = selectedTransportType.toLowerCase();
+        
+        let match = false;
+        if (selectedBody === 'седан') {
+          match = carBody.includes('седан') || carBody.includes('sedan');
+        } else if (selectedBody === 'позашляховик / кросовер') {
+          match = carBody.includes('кросовер') || carBody.includes('позашляховик') || carBody.includes('suv') || carBody.includes('crossover');
+        } else if (selectedBody === 'хетчбек') {
+          match = carBody.includes('хетчбек') || carBody.includes('hatchback');
+        } else if (selectedBody === 'універсал') {
+          match = carBody.includes('універсал') || carBody.includes('wagon') || carBody.includes('avant') || carBody.includes('touring');
+        } else if (selectedBody === 'мінівен') {
+          match = carBody.includes('мінівен') || carBody.includes('minivan') || carBody.includes('mpv');
+        } else if (selectedBody === 'купе') {
+          match = carBody.includes('купе') || carBody.includes('coupe');
+        } else if (selectedBody === 'кабріолет') {
+          match = carBody.includes('кабріолет') || carBody.includes('cabriolet') || carBody.includes('convertible');
+        } else {
+          match = carBody === selectedBody;
+        }
+        
+        if (!match) return false;
+      }
       return true;
     });
 
@@ -312,7 +352,7 @@ export function Catalog({ cars }: { cars: Car[] }) {
     setSelectedModels([]);
     setSelectedFuels([]);
     setSelectedTransmissions([]);
-    setSelectedTransportType('Легкові');
+    setSelectedTransportType('Всі типи кузова');
     setPriceFrom('');
     setPriceTo('');
     setYearFrom('');
@@ -335,13 +375,13 @@ export function Catalog({ cars }: { cars: Car[] }) {
       <div className="filters">
         <div className="filters-grid">
           
-          {/* A. Transport Type Dropdown */}
+          {/* A. Body Type Dropdown (replacing Transport Type) */}
           <div className="filter-field transport-type-field">
-            <label>Тип транспорту</label>
+            <label>Тип кузова</label>
             <div className="dropdown-container">
               <button 
                 type="button" 
-                className="dropdown-trigger-btn active"
+                className={`dropdown-trigger-btn ${selectedTransportType !== 'Всі типи кузова' ? 'active' : ''}`}
                 onClick={() => transportTypeDropdownOpen ? setTransportTypeDropdownOpen(false) : openTransportTypeDropdown()}
               >
                 <span className="trigger-label">{selectedTransportType}</span>
@@ -630,7 +670,7 @@ export function Catalog({ cars }: { cars: Car[] }) {
                           checked={tempFuels.includes(f)} 
                           onChange={() => toggleFuel(f)}
                         />
-                        <span>{f}</span>
+                        <span>{formatOptionLabel(f)}</span>
                       </label>
                     ))}
                   </div>
@@ -674,7 +714,7 @@ export function Catalog({ cars }: { cars: Car[] }) {
                           checked={tempTransmissions.includes(t)} 
                           onChange={() => toggleTransmission(t)}
                         />
-                        <span>{t}</span>
+                        <span>{formatOptionLabel(t)}</span>
                       </label>
                     ))}
                   </div>
