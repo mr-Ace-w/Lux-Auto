@@ -1615,6 +1615,8 @@ body.no-scroll {
 
 
 
+
+
 /* ==========================================================================
    CAR PAGE SPECIFIC STYLES (RESTORED FROM OLD VERSION WITH SHIELDING OVERRIDES)
    ========================================================================= */
@@ -2640,18 +2642,25 @@ body.no-scroll {
 @media (max-width: 768px) {
     /* Homepage Hero */
     .hero {
-        padding: 40px 15px 30px !important;
-        margin: 15px 12px 30px 12px !important; /* 12px left/right margins */
+        padding: 135px 12px 25px !important; /* Pushed content down to expose shop sign */
+        margin: 15px 12px 25px 12px !important; /* 12px left/right margins */
         border-radius: 16px !important;
         overflow: hidden !important;
+        background-position: center top !important; /* Align building sign at the top */
     }
     .hero h1 {
-        font-size: 32px !important;
-        margin: 15px 0 !important;
+        font-size: 24px !important; /* Smaller header font size */
+        margin: 10px 0 !important;
+        line-height: 1.25 !important;
     }
     .hero p {
-        font-size: 15px !important;
-        margin-bottom: 20px !important;
+        font-size: 13.5px !important; /* Tighter paragraph text */
+        margin-bottom: 15px !important;
+        line-height: 1.4 !important;
+    }
+    .hero .pills span {
+        padding: 6px 12px !important; /* Tighter pills padding */
+        font-size: 12px !important;
     }
 
     /* Catalog Filters Grid */
@@ -2672,7 +2681,7 @@ body.no-scroll {
     }
     .reset-btn {
         width: 100% !important;
-        max-width: 200px !important;
+        max-width: none !important; /* Expands to full width */
     }
 
     /* Car Catalog Cards */
@@ -3192,8 +3201,15 @@ footer h3 {
 }
 
 .fuel-menu,
-.transmission-menu {
+.transmission-menu,
+.sort-menu {
     width: 260px !important;
+}
+
+.transmission-menu,
+.sort-menu {
+    left: auto !important;
+    right: 0 !important;
 }
 
 .dropdown-columns {

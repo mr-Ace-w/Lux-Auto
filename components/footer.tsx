@@ -19,7 +19,7 @@ export function Footer() {
           <span>
             © 2026 Lux Auto.<br />
             All rights reserved.<br />
-            Designed & Developed by Vynn.
+            Designed & Developed by Vynnytsky.
           </span>
         </div>
       </div>

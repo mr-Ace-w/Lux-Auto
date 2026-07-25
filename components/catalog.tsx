@@ -30,6 +30,7 @@ export function Catalog({ cars }: { cars: Car[] }) {
   const [yearDropdownOpen, setYearDropdownOpen] = useState(false);
   const [fuelDropdownOpen, setFuelDropdownOpen] = useState(false);
   const [transmissionDropdownOpen, setTransmissionDropdownOpen] = useState(false);
+  const [sortDropdownOpen, setSortDropdownOpen] = useState(false);
 
   // Temporary/unapplied states for dropdowns
   const [tempBrands, setTempBrands] = useState<string[]>([]);
@@ -45,6 +46,7 @@ export function Catalog({ cars }: { cars: Car[] }) {
 
   const [tempFuels, setTempFuels] = useState<string[]>([]);
   const [tempTransmissions, setTempTransmissions] = useState<string[]>([]);
+  const [tempSort, setTempSort] = useState('new');
 
   // Unique options extracted from available cars
   const brandOptions = useMemo(() => {
@@ -80,6 +82,16 @@ export function Catalog({ cars }: { cars: Car[] }) {
   }, []);
 
   const transportTypeOptions = ['Всі типи транспорту', 'Легкові', 'Мото', 'Вантажівки', 'Причепи', 'Спецтехніка', 'Сільгосптехніка'];
+  
+  const sortOptions = [
+    { value: 'new', label: 'Спочатку нові' },
+    { value: 'price-up', label: 'Ціна: дешевші' },
+    { value: 'price-down', label: 'Ціна: дорожчі' },
+    { value: 'year-up', label: 'Рік: старіші' },
+    { value: 'year-down', label: 'Рік: новіші' },
+    { value: 'mileage-up', label: 'Пробіг: менший' },
+    { value: 'mileage-down', label: 'Пробіг: більший' }
+  ];
 
   // Sync temp state when opening dropdowns
   const openTransportTypeDropdown = () => {
@@ -117,6 +129,11 @@ export function Catalog({ cars }: { cars: Car[] }) {
     setTransmissionDropdownOpen(true);
   };
 
+  const openSortDropdown = () => {
+    setTempSort(sort);
+    setSortDropdownOpen(true);
+  };
+
   // Click outside listener
   useEffect(() => {
     function handleOutsideClick(event: MouseEvent) {
@@ -127,6 +144,7 @@ export function Catalog({ cars }: { cars: Car[] }) {
       if (!target.closest('.year-dropdown-field')) setYearDropdownOpen(false);
       if (!target.closest('.fuel-field')) setFuelDropdownOpen(false);
       if (!target.closest('.transmission-field')) setTransmissionDropdownOpen(false);
+      if (!target.closest('.sort-field')) setSortDropdownOpen(false);
     }
     document.addEventListener('click', handleOutsideClick);
     return () => document.removeEventListener('click', handleOutsideClick);
@@ -216,6 +234,11 @@ export function Catalog({ cars }: { cars: Car[] }) {
   const getTransmissionLabel = () => {
     if (selectedTransmissions.length === 0) return 'Коробка передач';
     return selectedTransmissions.join(', ');
+  };
+
+  const getSortLabel = () => {
+    const opt = sortOptions.find(o => o.value === sort);
+    return opt ? opt.label : 'Спочатку нові';
   };
 
   // Filter cars logic
@@ -583,7 +606,7 @@ export function Catalog({ cars }: { cars: Car[] }) {
               )}
             </div>
           </div>
-
+          
           {/* 4. Fuel Dropdown */}
           <div className="filter-field fuel-field">
             <label>Пальне</label>
@@ -672,18 +695,49 @@ export function Catalog({ cars }: { cars: Car[] }) {
             </div>
           </div>
 
-          {/* Sort selection */}
+          {/* Sort Selection Dropdown */}
           <div className="filter-field sort-field">
             <label>Сортування</label>
-            <select value={sort} onChange={(e) => setSort(e.target.value)}>
-              <option value="new">Спочатку нові</option>
-              <option value="price-up">Ціна: дешевші</option>
-              <option value="price-down">Ціна: дорожчі</option>
-              <option value="year-up">Рік: старіші</option>
-              <option value="year-down">Рік: новіші</option>
-              <option value="mileage-up">Пробіг: менший</option>
-              <option value="mileage-down">Пробіг: більший</option>
-            </select>
+            <div className="dropdown-container">
+              <button 
+                type="button" 
+                className="dropdown-trigger-btn active"
+                onClick={() => sortDropdownOpen ? setSortDropdownOpen(false) : openSortDropdown()}
+              >
+                <span className="trigger-label">{getSortLabel()}</span>
+                <span className="arrow">▼</span>
+              </button>
+
+              {sortDropdownOpen && (
+                <div className="dropdown-menu sort-menu">
+                  <div className="options-list">
+                    {sortOptions.map(opt => (
+                      <label key={opt.value} className="option-radio-label">
+                        <input 
+                          type="radio" 
+                          name="sortOption"
+                          checked={tempSort === opt.value} 
+                          onChange={() => setTempSort(opt.value)}
+                        />
+                        <span>{opt.label}</span>
+                      </label>
+                    ))}
+                  </div>
+                  <div className="dropdown-footer">
+                    <button 
+                      type="button" 
+                      className="apply-btn"
+                      onClick={() => {
+                        setSort(tempSort);
+                        setSortDropdownOpen(false);
+                      }}
+                    >
+                      Застосувати
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
 
           {/* Actions (Reset) */}
