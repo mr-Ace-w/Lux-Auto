@@ -1620,6 +1620,8 @@ body.no-scroll {
 
 
 
+
+
 /* ==========================================================================
    CAR PAGE SPECIFIC STYLES (RESTORED FROM OLD VERSION WITH SHIELDING OVERRIDES)
    ========================================================================= */
@@ -2643,10 +2645,8 @@ body.no-scroll {
 /* Homepage Hero Title Split Custom Styling (SEO + Design optimization) */
 .hero-brand-title {
     font-size: clamp(38px, 6vw, 58px) !important; /* Retain original size */
-    font-weight: 900 !important;
+    font-weight: bold !important; /* Restored original bold font weight */
     display: block !important;
-    letter-spacing: -1.5px !important;
-    text-transform: uppercase !important;
     color: #fff !important;
 }
 
@@ -2654,11 +2654,15 @@ body.no-scroll {
     font-size: clamp(16px, 2vw, 20px) !important; /* Much smaller than title */
     font-weight: 600 !important;
     display: block !important;
-    color: #ffd000 !important; /* Premium brand gold color */
+    color: #ffd000 !important; /* Restored brand yellow color */
     margin-top: 10px !important;
     letter-spacing: 0.5px !important;
     line-height: 1.4 !important;
-    text-transform: none !important;
+}
+
+/* Fix white-on-yellow readability bug for badge */
+.hero .badge {
+    color: #111 !important;
 }
 
 /* ================= GLOBAL MOBILE RESPONSIVENESS OVERRIDES (BREAKPOINT AT 768PX) ================= */
@@ -2678,6 +2682,7 @@ body.no-scroll {
         transform: translateX(-50%) !important;
         margin: 0 !important;
         white-space: nowrap !important;
+        color: #111 !important; /* Restored readability color on mobile */
     }
     .hero h1 {
         margin: 10px 0 !important;
@@ -2685,14 +2690,14 @@ body.no-scroll {
     }
     .hero-brand-title {
         font-size: 32px !important; /* Fits perfectly on mobile */
-        letter-spacing: -0.8px !important;
+        font-weight: bold !important;
     }
     .hero-subtitle {
         font-size: 14px !important; /* Elegant smaller text size on mobile */
         margin-top: 6px !important;
         line-height: 1.35 !important;
         font-weight: 600 !important;
-        color: #ffd000 !important;
+        color: #ffd000 !important; /* Restored brand yellow color on mobile */
     }
     .hero p {
         font-size: 13.5px !important; /* Tighter paragraph text */
