@@ -1619,6 +1619,7 @@ body.no-scroll {
 
 
 
+
 /* ==========================================================================
    CAR PAGE SPECIFIC STYLES (RESTORED FROM OLD VERSION WITH SHIELDING OVERRIDES)
    ========================================================================= */
@@ -2639,6 +2640,26 @@ body.no-scroll {
     }
 }
 
+/* Homepage Hero Title Split Custom Styling (SEO + Design optimization) */
+.hero-brand-title {
+    font-size: clamp(38px, 6vw, 58px) !important; /* Retain original size */
+    font-weight: 900 !important;
+    display: block !important;
+    letter-spacing: -1.5px !important;
+    text-transform: uppercase !important;
+    color: #fff !important;
+}
+
+.hero-subtitle {
+    font-size: clamp(16px, 2vw, 20px) !important; /* Much smaller than title */
+    font-weight: 600 !important;
+    display: block !important;
+    color: #ffd000 !important; /* Premium brand gold color */
+    margin-top: 10px !important;
+    letter-spacing: 0.5px !important;
+    line-height: 1.4 !important;
+    text-transform: none !important;
+}
 
 /* ================= GLOBAL MOBILE RESPONSIVENESS OVERRIDES (BREAKPOINT AT 768PX) ================= */
 @media (max-width: 768px) {
@@ -2659,9 +2680,19 @@ body.no-scroll {
         white-space: nowrap !important;
     }
     .hero h1 {
-        font-size: 24px !important; /* Smaller header font size */
         margin: 10px 0 !important;
         line-height: 1.25 !important;
+    }
+    .hero-brand-title {
+        font-size: 32px !important; /* Fits perfectly on mobile */
+        letter-spacing: -0.8px !important;
+    }
+    .hero-subtitle {
+        font-size: 14px !important; /* Elegant smaller text size on mobile */
+        margin-top: 6px !important;
+        line-height: 1.35 !important;
+        font-weight: 600 !important;
+        color: #ffd000 !important;
     }
     .hero p {
         font-size: 13.5px !important; /* Tighter paragraph text */

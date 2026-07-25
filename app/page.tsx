@@ -221,7 +221,10 @@ export default async function Home() {
       <main>
         <section className="hero">
           <span className="badge">🚗 Автомобілі в наявності</span>
-          <h1>Lux Auto — автомайданчик та продаж авто з пробігом у Теребовлі</h1>
+          <h1>
+            <span className="hero-brand-title">Lux Auto</span>
+            <span className="hero-subtitle">Автомайданчик та продаж авто з пробігом у Теребовлі</span>
+          </h1>
           <p>
             Продаж, обмін та викуп автомобілів. Перевірені авто з прозорою історією,
             чесними цінами та комфортною підтримкою по всіх питаннях.
