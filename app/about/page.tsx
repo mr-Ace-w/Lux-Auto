@@ -160,10 +160,18 @@ export default function About() {
 
     </div>
 
-    <img
-        src="/images/logo/geo2.png"
-        alt="Карта"
-    />
+    <div className="about-map-container">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2598.636009848529!2d25.68598421272659!3d49.30062767921206!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4731b1007b520b9d%3A0x9e1a9ef93a656d7c!2sLUX%20AUTO!5e0!3m2!1suk!2sua!4v1700000000000!5m2!1suk!2sua"
+        width="100%"
+        height="100%"
+        style={{ border: 0 }}
+        allowFullScreen={true}
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+        title="Lux Auto Google Map"
+      />
+    </div>
 
 </section>
 
