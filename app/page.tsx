@@ -220,26 +220,52 @@ export default async function Home() {
       <Header />
       <main>
         <section className="hero">
-          <span className="badge">🚗 Автомобілі в наявності</span>
-          <h1>
-            <span className="hero-brand-title">Lux Auto</span>
-            <span className="hero-subtitle">Автомайданчик та продаж авто з пробігом у Теребовлі</span>
-          </h1>
-          <p>
-            Продаж, обмін та викуп автомобілів. Перевірені авто з прозорою історією,
-            чесними цінами та комфортною підтримкою по всіх питаннях.
-          </p>
-          <div className="pills">
-            <span>✓ Перевірені авто</span>
-            <span>✓ Trade-In</span>
-            <span>✓ Викуп авто</span>
-            <span>✓ Документи</span>
+          <div className="hero-content hero-split">
+            {/* Ліва колонка */}
+            <div className="hero-left">
+              <div className="hero-eyebrow">
+                <span className="hero-dot"></span>
+                Теребовля · Тернопільська обл.
+              </div>
+              <h1>
+                <span className="hero-line-1">Lux Auto</span>
+                <span className="hero-line-2">Автомайданчик та продаж авто</span>
+                <span className="hero-line-accent">з пробігом у Теребовлі</span>
+              </h1>
+              <p className="hero-desc">
+                Понад <strong>100 авто</strong> в наявності. Перевірені технічно,
+                юридично чисті, з реальним пробігом. Допомагаємо з Trade-In та викупом.
+              </p>
+              <div className="hero-cta-row">
+                <a href="#catalog" className="hero-cta-main">Переглянути каталог</a>
+                <a href="tel:+380968264242" className="hero-cta-secondary">Зателефонувати</a>
+              </div>
+            </div>
+
+            {/* Права колонка — статистика */}
+            <div className="hero-right">
+              <div className="hero-stat">
+                <span className="hero-stat-num">200<span className="hero-stat-plus">+</span></span>
+                <span className="hero-stat-label">Задоволених клієнтів</span>
+              </div>
+              <div className="hero-stat-divider"></div>
+              <div className="hero-stat">
+                <span className="hero-stat-num">100<span className="hero-stat-plus">+</span></span>
+                <span className="hero-stat-label">Авто в наявності</span>
+              </div>
+              <div className="hero-stat-divider"></div>
+              <div className="hero-stat">
+                <span className="hero-stat-num">3<span className="hero-stat-plus">+</span></span>
+                <span className="hero-stat-label">Роки на ринку</span>
+              </div>
+            </div>
           </div>
         </section>
 
         <div id="catalog">
           <Catalog cars={cars} />
         </div>
+
 
         <section className="seo-text-section collapsed" id="seo-section">
           <div className="seo-container">

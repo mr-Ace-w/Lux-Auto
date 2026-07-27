@@ -95,32 +95,63 @@ export default function About() {
 
         </section>
 
-        <section className="about-section">
-
-          <h2 className="section-title">
-            Чому обирають нас?
-          </h2>
-
-          <div className="cards">
-
-            <div className="card">
-              🚗 Великий вибір автомобілів
+        <section className="about-section why-us-section">
+          <div className="why-us-inner">
+            <div className="why-us-header">
+              <span className="section-eyebrow">Наші переваги</span>
+              <h2>Чому обирають <span className="text-red">Lux Auto</span>?</h2>
+              <p>Ми не просто продаємо авто — ми створюємо новий стандарт надійності та прозорості</p>
             </div>
+            <div className="why-us-grid">
+              <div className="why-card bento-wide">
+                <div className="why-card-content">
+                  <h3>Ретельна перевірка автомобілів</h3>
+                  <p>Кожен автомобіль проходить комплексний технічний огляд по 100+ пунктах, комп'ютерну діагностику та ретельну перевірку юридичної чистоти перед продажем.</p>
+                </div>
+                <div className="why-icon-absolute">🔍</div>
+              </div>
 
-            <div className="card">
-              🔍 Перевірка технічного стану
+              <div className="why-card">
+                <div className="why-card-content">
+                  <h3>Вигідний Trade-In</h3>
+                  <p>Обміняйте свій старий автомобіль на будь-який інший з нашого майданчика з доплатою в обидві сторони за 1 годину.</p>
+                </div>
+                <div className="why-icon-absolute">🔄</div>
+              </div>
+
+              <div className="why-card">
+                <div className="why-card-content">
+                  <h3>Чесні ціни без комісій</h3>
+                  <p>Ціна, яку ви бачите на сайті, є кінцевою. Жодних прихованих платежів, накруток чи додаткових зборів.</p>
+                </div>
+                <div className="why-icon-absolute">💰</div>
+              </div>
+
+              <div className="why-card bento-wide">
+                <div className="why-card-content">
+                  <h3>Юридичний супровід та документи</h3>
+                  <p>Ми повністю беремо на себе переоформлення: перевірка в реєстрах, підготовка договорів та повний супровід під час реєстрації в сервісному центрі МВС.</p>
+                </div>
+                <div className="why-icon-absolute">📋</div>
+              </div>
+
+              <div className="why-card">
+                <div className="why-card-content">
+                  <h3>Швидкий автовикуп</h3>
+                  <p>Терміново потрібні гроші? Ми проведемо експрес-оцінку та викупимо ваше авто за максимально вигідною ринковою ціною.</p>
+                </div>
+                <div className="why-icon-absolute">⚡</div>
+              </div>
+
+              <div className="why-card bento-wide">
+                <div className="why-card-content">
+                  <h3>Підтримка та робота щодня</h3>
+                  <p>Працюємо без вихідних та свят з 08:58 до 21:21. Наші менеджери завжди готові відповісти на будь-які запитання та допомогти з вибором.</p>
+                </div>
+                <div className="why-icon-absolute">🤝</div>
+              </div>
             </div>
-
-            <div className="card">
-              📄 Допомога з документами
-            </div>
-
-            <div className="card">
-              🤝 Чесний обмін та викуп
-            </div>
-
           </div>
-
         </section>
 
 
