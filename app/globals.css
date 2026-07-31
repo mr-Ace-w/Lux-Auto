@@ -2635,10 +2635,7 @@ body.no-scroll {
         transition: transform 0.3s ease, opacity 0.3s ease !important;
         display: block !important;
     }
-    .header.menu-open .header-center {
-        transform: translate(-150%, -50%) !important;
-        opacity: 0 !important;
-    }
+    /* Removed left-sliding header animation */
     .header.menu-open .header-nav {
         transform: translate(0, -50%) !important;
         opacity: 1 !important;
@@ -4245,6 +4242,7 @@ footer {
   display: flex !important;
   gap: 12px !important;
   flex-wrap: wrap !important;
+  justify-content: center !important;
 }
 
 .footer-socials a {
@@ -4562,4 +4560,336 @@ footer {
   .contact-info-card-modern {
     padding: 20px !important;
   }
+}
+
+/* ============================================================
+   PREMIUM FLOATING GLASSMORPHIC HEADER & NAVIGATION OVERRIDES
+   ============================================================ */
+.header {
+  position: sticky !important;
+  top: 16px !important;
+  z-index: 9999 !important;
+  max-width: 1400px !important;
+  margin: 16px auto 0 !important;
+  width: calc(100% - 32px) !important;
+  background: #111111 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 18px !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.22) !important;
+  height: 64px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 0 24px !important;
+  font-weight: bold !important;
+  color: #ffffff !important;
+  transition: background 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.header.scrolled {
+  background: rgba(8, 8, 8, 0.60) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+}
+
+.header-center {
+  position: absolute !important;
+  left: 50% !important;
+  top: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  font-size: 20px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.5px !important;
+  color: #ffffff !important;
+  margin: 0 !important;
+  z-index: 10002 !important;
+  white-space: nowrap !important;
+}
+
+.header-logo {
+  height: 46px !important;
+  width: auto !important;
+  object-fit: contain !important;
+  transition: transform 0.25s ease !important;
+}
+
+.header-logo:hover {
+  transform: scale(1.05);
+}
+
+.header-nav {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+
+.header-nav a {
+  color: rgba(255, 255, 255, 0.75) !important;
+  text-decoration: none !important;
+  padding: 8px 16px !important;
+  border-radius: 10px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  transition: all 0.2s ease !important;
+  margin: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  letter-spacing: -0.1px !important;
+}
+
+.header-nav a:hover {
+  color: #ffd000 !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+}
+
+.header-account-link-old {
+  padding: 8px !important;
+}
+
+.header-account-link-old svg {
+  transition: fill 0.2s ease !important;
+}
+
+.header-account-link-old:hover svg {
+  fill: #ffd000 !important;
+}
+
+/* Burger Button styling */
+.burger-btn {
+  display: none !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  width: 24px !important;
+  height: 18px !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  cursor: pointer !important;
+  z-index: 10001 !important;
+}
+
+.burger-bar {
+  width: 100% !important;
+  height: 2px !important;
+  background-color: #ffffff !important;
+  border-radius: 2px !important;
+  transition: all 0.3s ease !important;
+}
+
+/* Mobile responsive navigation */
+@media (max-width: 768px) {
+  .burger-btn {
+    display: flex !important;
+  }
+  
+  .header-logo {
+    height: 38px !important;
+  }
+  
+  .header-nav {
+    position: absolute !important;
+    top: 76px !important;
+    right: 0 !important;
+    width: 100% !important;
+    background: rgba(17, 17, 17, 0.94) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 18px !important;
+    padding: 16px !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35) !important;
+    transform: translateY(-10px) !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    z-index: 9998 !important;
+  }
+  
+  .header.menu-open .header-nav {
+    transform: translateY(0) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  
+  .header.menu-open .burger-bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg) !important;
+  }
+  
+  .header.menu-open .burger-bar:nth-child(2) {
+    opacity: 0 !important;
+  }
+  
+  .header.menu-open .burger-bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg) !important;
+  }
+
+  .header-nav a {
+    width: 100% !important;
+    padding: 12px !important;
+    font-size: 15px !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03) !important;
+  }
+}
+
+/* ============================================================
+   GLOBAL BODY DEPTH & MESH OVERLAYS & HERO MAX WIDTH
+   ============================================================ */
+body {
+  background: #f7f8fa !important;
+  position: relative !important;
+}
+
+body::before {
+  content: "" !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background: 
+    radial-gradient(circle at 80% 20%, rgba(255, 208, 0, 0.045) 0%, rgba(255, 255, 255, 0) 50%),
+    radial-gradient(circle at 10% 60%, rgba(0, 151, 0, 0.015) 0%, rgba(255, 255, 255, 0) 40%),
+    radial-gradient(circle at 50% 80%, rgba(27, 27, 27, 0.02) 0%, rgba(255, 255, 255, 0) 60%) !important;
+  z-index: -2 !important;
+  pointer-events: none !important;
+  user-select: none !important;
+}
+
+.hero {
+  max-width: 1400px !important;
+}
+
+.catalog {
+  max-width: 1400px !important;
+  width: calc(100% - 32px) !important;
+  margin: 28px auto !important;
+}
+
+/* ============================================================
+   PREMIUM FILTER SECTION OVERHAUL
+   ============================================================ */
+.filters {
+  max-width: 1400px !important;
+  margin: 0 auto 36px !important;
+  padding: 24px !important;
+  border: 1px solid rgba(0, 0, 0, 0.05) !important;
+  border-radius: 24px !important;
+  background: #ffffff !important;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.03) !important;
+  position: relative !important;
+}
+
+.filters-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 16px !important;
+}
+
+@media (max-width: 991px) {
+  .filters-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .filters-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+.filter-field {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+  position: relative !important;
+}
+
+.filter-field label {
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  color: #777777 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  margin-left: 2px !important;
+}
+
+.dropdown-trigger-btn {
+  width: 100% !important;
+  background: #f8f9fa !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  border-radius: 12px !important;
+  padding: 12px 16px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  color: #333333 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+.dropdown-trigger-btn:hover {
+  background: #f1f3f5 !important;
+  border-color: rgba(0, 0, 0, 0.15) !important;
+}
+
+.dropdown-trigger-btn.active {
+  border-color: #ffd000 !important;
+  background: rgba(255, 208, 0, 0.04) !important;
+  color: #111111 !important;
+}
+
+.dropdown-menu {
+  position: absolute !important;
+  top: 100% !important;
+  margin-top: 8px !important;
+  left: 0 !important;
+  z-index: 1000 !important;
+  background: #ffffff !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1) !important;
+  padding: 12px !important;
+  min-width: 240px !important;
+}
+
+.apply-btn {
+  background: #111111 !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 10px !important;
+  padding: 10px 16px !important;
+  font-weight: 700 !important;
+  font-size: 13px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  width: 100% !important;
+}
+
+.apply-btn:hover {
+  background: #ffd000 !important;
+  color: #111111 !important;
+}
+
+.reset-btn {
+  background: transparent !important;
+  color: #666666 !important;
+  border: 1px dashed rgba(0, 0, 0, 0.15) !important;
+  border-radius: 12px !important;
+  padding: 12px 16px !important;
+  font-weight: 700 !important;
+  font-size: 14px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  width: 100% !important;
+}
+
+.reset-btn:hover {
+  color: #b00020 !important;
+  border-color: #b00020 !important;
+  background: rgba(176, 0, 32, 0.03) !important;
 }
