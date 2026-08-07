@@ -18,6 +18,56 @@ export function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    let active = true;
+    let unsubscribeFn: (() => void) | null = null;
+
+    const initAuth = async () => {
+      const { createClient } = await import('@/lib/supabase/browser');
+      const supabase = createClient();
+
+      const checkUser = async () => {
+        const { data: { user } } = await supabase.auth.getUser();
+        if (!active) return;
+        if (user) {
+          const { data: profile } = await supabase
+            .from('profiles')
+            .select('is_admin')
+            .eq('id', user.id)
+            .single();
+          if (active) {
+            setIsAdmin(!!profile?.is_admin);
+          }
+        } else {
+          setIsAdmin(false);
+        }
+      };
+
+      await checkUser();
+
+      const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+        if (session?.user) {
+          checkUser();
+        } else {
+          setIsAdmin(false);
+        }
+      });
+
+      unsubscribeFn = () => subscription.unsubscribe();
+    };
+
+    initAuth();
+
+    return () => {
+      active = false;
+      if (unsubscribeFn) {
+        unsubscribeFn();
+      }
+    };
+  }, []);
+
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
@@ -45,7 +95,7 @@ export function Header() {
             <span className="m-text">Контакти</span>
           </Link>
         )}
-        {!pathname.startsWith('/car/') && !pathname.startsWith('/admin') && (
+        {isAdmin && !pathname.startsWith('/car/') && !pathname.startsWith('/admin') && (
           <Link
             className="head-btn header-account-link-old"
             href="/admin"
