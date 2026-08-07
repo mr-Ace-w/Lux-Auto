@@ -375,50 +375,7 @@ export function Catalog({ cars }: { cars: Car[] }) {
       <div className="filters">
         <div className="filters-grid">
           
-          {/* A. Body Type Dropdown (replacing Transport Type) */}
-          <div className="filter-field transport-type-field">
-            <label>Тип кузова</label>
-            <div className="dropdown-container">
-              <button 
-                type="button" 
-                className={`dropdown-trigger-btn ${selectedTransportType !== 'Всі типи кузова' ? 'active' : ''}`}
-                onClick={() => transportTypeDropdownOpen ? setTransportTypeDropdownOpen(false) : openTransportTypeDropdown()}
-              >
-                <span className="trigger-label">{selectedTransportType}</span>
-                <span className="arrow">▼</span>
-              </button>
 
-              {transportTypeDropdownOpen && (
-                <div className="dropdown-menu transport-type-menu">
-                  <div className="options-list">
-                    {transportTypeOptions.map(t => (
-                      <label key={t} className="option-radio-label">
-                        <input 
-                          type="radio" 
-                          name="transportType"
-                          checked={tempTransportType === t} 
-                          onChange={() => setTempTransportType(t)}
-                        />
-                        <span>{t}</span>
-                      </label>
-                    ))}
-                  </div>
-                  <div className="dropdown-footer">
-                    <button 
-                      type="button" 
-                      className="apply-btn"
-                      onClick={() => {
-                        setSelectedTransportType(tempTransportType);
-                        setTransportTypeDropdownOpen(false);
-                      }}
-                    >
-                      Застосувати
-                    </button>
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
           
           {/* 1. Brand & Model Dropdown */}
           <div className="filter-field brand-model-field">
