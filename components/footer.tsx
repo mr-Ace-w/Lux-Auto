@@ -21,7 +21,7 @@ export function Footer() {
 
         <div className="footer-col">
           <h4>Графік роботи</h4>
-          <p>Пн–Нд: 08:58 – 21:21</p>
+          <p>Пн–Нд: 09:00 – 18:00</p>
           <p>Без вихідних</p>
         </div>
 
@@ -43,7 +43,10 @@ export function Footer() {
 
       <div className="footer-bottom">
         <span>© 2026 Lux Auto. All rights reserved.</span>
-        <span>Designed &amp; Developed by Vynnytsky.</span>
+        <span>
+          <span style={{ color: '#aaaaaa' }}>Designed &amp; Developed by </span>
+          <span style={{ color: '#ffffff', fontWeight: 600 }}>Vynnytsky.</span>
+        </span>
       </div>
     </footer>
   );

@@ -105,7 +105,7 @@ export default function Contacts() {
               </div>
               <div className="card-body-content">
                 <p className="contact-schedule-bold">Працюємо щодня без вихідних</p>
-                <p className="contact-schedule-time">Пн - Нд: 08:58 – 21:21</p>
+                <p className="contact-schedule-time">Пн - Нд: 09:00 – 18:00</p>
                 <p className="contact-desc-text">Огляди автомобілів можливі у будь-який зручний для вас час за попередньою домовленістю.</p>
               </div>
             </div>

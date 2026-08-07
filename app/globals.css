@@ -2054,7 +2054,14 @@ body.no-scroll {
 
     .car-page .prev,
     .car-page .next {
-       display: none !important;
+       display: block !important;
+    }
+
+    @media (max-width: 600px) {
+        .car-page .prev,
+        .car-page .next {
+           display: none !important;
+        }
     }
 
     .car-page .thumbs {
