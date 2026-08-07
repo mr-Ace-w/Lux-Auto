@@ -9,7 +9,18 @@ const formatOptionLabel = (text: string) => {
   return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
 };
 
-export function Catalog({ cars }: { cars: Car[] }) {
+export function Catalog({ cars: rawCars }: { cars: Car[] }) {
+  const cars = useMemo(() => {
+    return rawCars.map(car => ({
+      ...car,
+      brand: car.brand ? car.brand.trim() : '',
+      model: car.model ? car.model.trim() : '',
+      fuel: car.fuel ? car.fuel.trim() : '',
+      transmission: car.transmission ? car.transmission.trim() : '',
+      engine: car.engine ? car.engine.trim() : ''
+    }));
+  }, [rawCars]);
+
   // Applied filters states
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
   const [selectedModels, setSelectedModels] = useState<string[]>([]);
