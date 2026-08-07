@@ -293,7 +293,7 @@ export function Catalog({ cars: rawCars }: { cars: Car[] }) {
       // 5. Fuel Multi-select
       if (selectedFuels.length > 0) {
         const carFuel = car.fuel.toLowerCase();
-        const match = selectedFuels.some(f => f.toLowerCase() === carFuel);
+        const match = selectedFuels.some(f => carFuel.includes(f.toLowerCase()));
         if (!match) return false;
       }
       // 6. Transmission Multi-select
