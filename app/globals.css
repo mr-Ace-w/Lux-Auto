@@ -4608,8 +4608,8 @@ footer {
 
 .header.scrolled {
   background: rgba(8, 8, 8, 0.60) !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
 }
 
 .header-center {
@@ -4912,4 +4912,15 @@ body::before {
   color: #b00020 !important;
   border-color: #b00020 !important;
   background: rgba(176, 0, 32, 0.03) !important;
+}
+
+@media (max-width: 768px) {
+  .filters {
+    width: calc(100% - 24px) !important;
+    margin: 0 12px 36px 12px !important;
+  }
+  .catalog {
+    width: calc(100% - 24px) !important;
+    margin: 28px 12px !important;
+  }
 }
