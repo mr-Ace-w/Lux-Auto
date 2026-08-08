@@ -227,13 +227,15 @@ export default async function Home() {
                   <span className="hero-dot"></span>
                   Теребовля · Тернопільська обл.
                 </div>
-                <h1>
+                <h1 className="hero-brand-title">
                   <span className="hero-line-1">Lux Auto</span>
-                  <span className="hero-line-2">Автомайданчик та продаж авто</span>
-                  <span className="hero-line-accent">з пробігом у Теребовлі</span>
                 </h1>
               </div>
               <div className="hero-left-bottom">
+                <h2 className="hero-main-title">
+                  <span className="hero-line-2">Автомайданчик та продаж авто</span>
+                  <span className="hero-line-accent">з пробігом у Теребовлі</span>
+                </h2>
                 <p className="hero-desc">
                   Понад <strong>100 авто</strong> в наявності. Перевірені технічно,
                   юридично чисті, з реальним пробігом. Допомагаємо з Trade-In та викупом.
