@@ -221,24 +221,27 @@ export default async function Home() {
       <main>
         <section className="hero">
           <div className="hero-content hero-split">
-            {/* Ліва колонка */}
             <div className="hero-left">
-              <div className="hero-eyebrow">
-                <span className="hero-dot"></span>
-                Теребовля · Тернопільська обл.
+              <div className="hero-left-top">
+                <div className="hero-eyebrow">
+                  <span className="hero-dot"></span>
+                  Теребовля · Тернопільська обл.
+                </div>
+                <h1>
+                  <span className="hero-line-1">Lux Auto</span>
+                  <span className="hero-line-2">Автомайданчик та продаж авто</span>
+                  <span className="hero-line-accent">з пробігом у Теребовлі</span>
+                </h1>
               </div>
-              <h1>
-                <span className="hero-line-1">Lux Auto</span>
-                <span className="hero-line-2">Автомайданчик та продаж авто</span>
-                <span className="hero-line-accent">з пробігом у Теребовлі</span>
-              </h1>
-              <p className="hero-desc">
-                Понад <strong>100 авто</strong> в наявності. Перевірені технічно,
-                юридично чисті, з реальним пробігом. Допомагаємо з Trade-In та викупом.
-              </p>
-              <div className="hero-cta-row">
-                <a href="#catalog" className="hero-cta-main">Переглянути каталог</a>
-                <a href="tel:+380968264242" className="hero-cta-secondary">Зателефонувати</a>
+              <div className="hero-left-bottom">
+                <p className="hero-desc">
+                  Понад <strong>100 авто</strong> в наявності. Перевірені технічно,
+                  юридично чисті, з реальним пробігом. Допомагаємо з Trade-In та викупом.
+                </p>
+                <div className="hero-cta-row">
+                  <a href="#catalog" className="hero-cta-main">Переглянути каталог</a>
+                  <a href="tel:+380968264242" className="hero-cta-secondary">Зателефонувати</a>
+                </div>
               </div>
             </div>
 
