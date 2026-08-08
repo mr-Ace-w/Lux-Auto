@@ -688,10 +688,12 @@ footer a {
   height: 30px;
   padding: 0 10px;
   border-radius: 999px;
-  background: #eee7d4;
-  color: #8a5a00;
-  font-weight: 700;
-  font-size: 0.86rem;
+  background: #e0e0e0;
+  color: #000000;
+  font-weight: 800;
+  font-size: 0.92rem;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2) !important;
 }
 .specs {
   display: grid;
