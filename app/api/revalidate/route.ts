@@ -1,0 +1,1 @@
+import {revalidatePath} from 'next/cache';import {NextRequest} from 'next/server';export async function POST(request:NextRequest){if(request.headers.get('x-revalidate-secret')!==process.env.REVALIDATE_SECRET)return Response.json({error:'Unauthorized'},{status:401});revalidatePath('/');revalidatePath('/car/[id]','page');return Response.json({ok:true})}

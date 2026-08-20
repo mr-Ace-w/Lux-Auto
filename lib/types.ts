@@ -1,0 +1,2 @@
+export type CarImage={id:string;url:string;position:number;alt?:string};
+export type Car={id:string;brand:string;model:string;year:number;price:number;mileage:number;fuel:string;engine:string;transmission:string;drive:string|null;body_type:string|null;description:string|null;short_description:string|null;features:string[];details:Record<string,string>;images:CarImage[];is_top:boolean;is_sold:boolean;is_recommended:boolean;is_hidden:boolean;views:number;created_at:string;updated_at:string};
