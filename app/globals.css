@@ -4595,12 +4595,18 @@ footer {
   max-width: 1400px !important;
   margin: 16px auto 0 !important;
   width: calc(100% - 32px) !important;
-  background: rgba(24, 24, 28, 0.58) !important;
-  -webkit-backdrop-filter: blur(28px) saturate(210%) brightness(108%) !important;
-  backdrop-filter: blur(28px) saturate(210%) brightness(108%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.18) !important;
-  border-radius: 28px !important;
-  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.28), inset 0 1px 1px 0 rgba(255, 255, 255, 0.38), inset 0 -1px 1px 0 rgba(0, 0, 0, 0.25) !important;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.04) 35%, rgba(0, 0, 0, 0.20) 100%), rgba(20, 20, 25, 0.42) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(190%) contrast(110%) brightness(108%) !important;
+  backdrop-filter: blur(12px) saturate(190%) contrast(110%) brightness(108%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.50) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 30px !important;
+  box-shadow: 
+    0 20px 50px rgba(0, 0, 0, 0.32),
+    inset 0 1.5px 0 0 rgba(255, 255, 255, 0.65),
+    inset 0 -1px 0 0 rgba(0, 0, 0, 0.45),
+    inset 0 0 24px rgba(255, 255, 255, 0.06) !important;
   height: 64px !important;
   display: flex !important;
   align-items: center !important;
@@ -4612,11 +4618,17 @@ footer {
 }
 
 .header.scrolled {
-  background: rgba(16, 16, 20, 0.70) !important;
-  -webkit-backdrop-filter: blur(32px) saturate(220%) brightness(105%) !important;
-  backdrop-filter: blur(32px) saturate(220%) brightness(105%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.22) !important;
-  box-shadow: 0 22px 55px rgba(0, 0, 0, 0.36), inset 0 1px 1px 0 rgba(255, 255, 255, 0.42), inset 0 -1px 1px 0 rgba(0, 0, 0, 0.3) !important;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.03) 35%, rgba(0, 0, 0, 0.30) 100%), rgba(14, 14, 18, 0.54) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(200%) contrast(112%) brightness(105%) !important;
+  backdrop-filter: blur(14px) saturate(200%) contrast(112%) brightness(105%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.28) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.58) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
+  box-shadow: 
+    0 24px 60px rgba(0, 0, 0, 0.40),
+    inset 0 1.5px 0 0 rgba(255, 255, 255, 0.70),
+    inset 0 -1px 0 0 rgba(0, 0, 0, 0.50),
+    inset 0 0 24px rgba(255, 255, 255, 0.08) !important;
 }
 
 .header-center {
@@ -4720,15 +4732,17 @@ footer {
     top: 76px !important;
     right: 0 !important;
     width: 100% !important;
-    background: rgba(22, 22, 26, 0.78) !important;
-    backdrop-filter: blur(28px) saturate(210%) brightness(108%) !important;
-    -webkit-backdrop-filter: blur(28px) saturate(210%) brightness(108%) !important;
-    border: 1px solid rgba(255, 255, 255, 0.18) !important;
-    border-radius: 24px !important;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.04) 35%, rgba(0, 0, 0, 0.25) 100%), rgba(20, 20, 25, 0.58) !important;
+    backdrop-filter: blur(14px) saturate(190%) contrast(110%) brightness(106%) !important;
+    -webkit-backdrop-filter: blur(14px) saturate(190%) contrast(110%) brightness(106%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.50) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14) !important;
+    border-radius: 26px !important;
     padding: 16px !important;
     flex-direction: column !important;
     gap: 8px !important;
-    box-shadow: 0 22px 55px rgba(0, 0, 0, 0.42), inset 0 1px 1px 0 rgba(255, 255, 255, 0.35) !important;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.42), inset 0 1.5px 0 0 rgba(255, 255, 255, 0.60), inset 0 0 20px rgba(255, 255, 255, 0.06) !important;
     transform: translateY(-10px) !important;
     opacity: 0 !important;
     visibility: hidden !important;
