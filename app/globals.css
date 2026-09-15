@@ -4949,7 +4949,257 @@ body::before {
   }
 }
 
+/* ============================================================
+   PREMIUM APPLE IPHONE LIQUID GLASS BUTTONS ACROSS THE SITE
+   ============================================================ */
+
+/* Primary action buttons (.button, car card buttons, admin buttons) */
+.button,
 .card-actions .button,
-.card-actions .call-button {
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.18), 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+.login .button,
+.admin-content .button,
+form .button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.05) 35%, rgba(0, 0, 0, 0.20) 100%), rgba(20, 20, 25, 0.80) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(190%) contrast(110%) brightness(108%) !important;
+  backdrop-filter: blur(12px) saturate(190%) contrast(110%) brightness(108%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.24) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.52) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 18px !important;
+  box-shadow: 
+    0 12px 28px -4px rgba(0, 0, 0, 0.32),
+    inset 0 1.5px 0 0 rgba(255, 255, 255, 0.65),
+    inset 0 -1px 0 0 rgba(0, 0, 0, 0.45),
+    inset 0 0 16px rgba(255, 255, 255, 0.05) !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.2px !important;
+  padding: 12px 20px !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
+
+.button:hover,
+.card-actions .button:hover,
+.login .button:hover,
+.admin-content .button:hover,
+form .button:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.08) 35%, rgba(0, 0, 0, 0.12) 100%), rgba(32, 32, 40, 0.88) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.75) !important;
+  box-shadow: 
+    0 16px 36px -4px rgba(0, 0, 0, 0.42),
+    inset 0 1.5px 0 0 rgba(255, 255, 255, 0.85),
+    inset 0 -1px 0 0 rgba(0, 0, 0, 0.50),
+    inset 0 0 20px rgba(255, 255, 255, 0.10) !important;
+  transform: translateY(-2px) scale(1.01) !important;
+  color: #ffffff !important;
+}
+
+.button:active,
+.card-actions .button:active {
+  transform: translateY(0) scale(0.98) !important;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3), inset 0 1px 0 0 rgba(255, 255, 255, 0.4) !important;
+}
+
+/* Call Button (Circular Liquid Glass Phone Button) */
+.call-button,
+.card-actions .call-button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 50% !important;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.20) 0%, rgba(255, 255, 255, 0.05) 35%, rgba(0, 0, 0, 0.20) 100%), rgba(20, 20, 25, 0.80) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(190%) contrast(110%) brightness(108%) !important;
+  backdrop-filter: blur(12px) saturate(190%) contrast(110%) brightness(108%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.24) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.52) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 
+    0 12px 28px -4px rgba(0, 0, 0, 0.32),
+    inset 0 1.5px 0 0 rgba(255, 255, 255, 0.65),
+    inset 0 -1px 0 0 rgba(0, 0, 0, 0.45),
+    inset 0 0 16px rgba(255, 255, 255, 0.05) !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  flex-shrink: 0 !important;
+}
+
+.call-button:hover,
+.card-actions .call-button:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.30) 0%, rgba(255, 255, 255, 0.10) 35%, rgba(0, 0, 0, 0.10) 100%), rgba(32, 32, 40, 0.90) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.75) !important;
+  box-shadow: 
+    0 16px 36px -4px rgba(0, 0, 0, 0.42),
+    inset 0 1.5px 0 0 rgba(255, 255, 255, 0.85),
+    inset 0 0 20px rgba(255, 255, 255, 0.10) !important;
+  transform: translateY(-2px) scale(1.06) !important;
+}
+
+.call-button:active,
+.card-actions .call-button:active {
+  transform: translateY(0) scale(0.96) !important;
+}
+
+.call-button .phone-icon-white,
+.call-button:hover .phone-icon-white {
+  display: block !important;
+  width: 24px !important;
+  height: 24px !important;
+  object-fit: contain !important;
+}
+
+.call-button .phone-icon-black,
+.call-button:hover .phone-icon-black {
+  display: none !important;
+}
+
+/* Page CTA buttons (.btn on /car/[id] and /contacts) */
+.btn,
+.car-page .btn,
+.contacts-page .btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.20) 0%, rgba(255, 255, 255, 0.05) 35%, rgba(0, 0, 0, 0.20) 100%), rgba(20, 20, 25, 0.82) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(190%) contrast(110%) brightness(108%) !important;
+  backdrop-filter: blur(12px) saturate(190%) contrast(110%) brightness(108%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.55) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 20px !important;
+  box-shadow: 
+    0 14px 34px -4px rgba(0, 0, 0, 0.35),
+    inset 0 1.5px 0 0 rgba(255, 255, 255, 0.65),
+    inset 0 -1px 0 0 rgba(0, 0, 0, 0.45),
+    inset 0 0 18px rgba(255, 255, 255, 0.06) !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.btn:hover,
+.car-page .btn:hover,
+.contacts-page .btn:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.30) 0%, rgba(255, 255, 255, 0.08) 35%, rgba(0, 0, 0, 0.12) 100%), rgba(32, 32, 40, 0.90) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.78) !important;
+  box-shadow: 
+    0 18px 40px -4px rgba(0, 0, 0, 0.45),
+    inset 0 1.5px 0 0 rgba(255, 255, 255, 0.85),
+    inset 0 0 22px rgba(255, 255, 255, 0.12) !important;
+  transform: translateY(-2px) scale(1.01) !important;
+  color: #ffffff !important;
+}
+
+/* Secondary CTA buttons (.btn2 on car spec links) */
+.btn2,
+.car-page .btn2,
+.contacts-page .btn2 {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.04) 35%, rgba(0, 0, 0, 0.15) 100%), rgba(30, 30, 35, 0.72) !important;
+  -webkit-backdrop-filter: blur(10px) saturate(180%) !important;
+  backdrop-filter: blur(10px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.20) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.45) !important;
+  border-radius: 16px !important;
+  box-shadow: 
+    0 8px 20px rgba(0, 0, 0, 0.20),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.50) !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  transition: all 0.25s ease !important;
+}
+
+.btn2:hover,
+.car-page .btn2:hover,
+.contacts-page .btn2:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.08) 100%), rgba(40, 40, 48, 0.85) !important;
+  transform: translateY(-2px) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.65) !important;
+  color: #ffffff !important;
+}
+
+/* Danger / Delete button (Ruby Liquid Glass) */
+.danger {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.05) 35%, rgba(0, 0, 0, 0.20) 100%), rgba(190, 24, 38, 0.82) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(200%) !important;
+  backdrop-filter: blur(12px) saturate(200%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.60) !important;
+  border-radius: 18px !important;
+  box-shadow: 
+    0 12px 28px -4px rgba(190, 24, 38, 0.40),
+    inset 0 1.5px 0 0 rgba(255, 255, 255, 0.70) !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  padding: 12px 18px !important;
+  cursor: pointer !important;
+  transition: all 0.25s ease !important;
+}
+
+.danger:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.32) 0%, rgba(255, 255, 255, 0.08) 100%), rgba(215, 28, 45, 0.90) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 16px 36px -4px rgba(190, 24, 38, 0.50), inset 0 1.5px 0 0 rgba(255, 255, 255, 0.85) !important;
+}
+
+/* Filter buttons */
+.apply-btn {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.20) 0%, rgba(255, 255, 255, 0.05) 35%, rgba(0, 0, 0, 0.20) 100%), rgba(20, 20, 25, 0.85) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(190%) !important;
+  backdrop-filter: blur(12px) saturate(190%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.24) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.52) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 10px 24px -3px rgba(0, 0, 0, 0.30), inset 0 1.5px 0 0 rgba(255, 255, 255, 0.60) !important;
+  color: #ffffff !important;
+  padding: 11px 18px !important;
+  font-weight: 700 !important;
+  font-size: 14px !important;
+  cursor: pointer !important;
+  transition: all 0.25s ease !important;
+}
+
+.apply-btn:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.30) 0%, rgba(255, 255, 255, 0.08) 100%), rgba(32, 32, 40, 0.92) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.75) !important;
+  transform: translateY(-2px) !important;
+  color: #ffffff !important;
+}
+
+.reset-btn {
+  background: rgba(255, 255, 255, 0.65) !important;
+  -webkit-backdrop-filter: blur(10px) saturate(180%) !important;
+  backdrop-filter: blur(10px) saturate(180%) !important;
+  color: #444444 !important;
+  border: 1px solid rgba(0, 0, 0, 0.12) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.90) !important;
+  border-radius: 16px !important;
+  padding: 12px 16px !important;
+  font-weight: 700 !important;
+  font-size: 14px !important;
+  cursor: pointer !important;
+  transition: all 0.25s ease !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06), inset 0 1px 1px 0 rgba(255, 255, 255, 0.9) !important;
+}
+
+.reset-btn:hover {
+  color: #b00020 !important;
+  border-color: rgba(176, 0, 32, 0.35) !important;
+  background: rgba(255, 255, 255, 0.85) !important;
+  transform: translateY(-1px) !important;
+}
+
