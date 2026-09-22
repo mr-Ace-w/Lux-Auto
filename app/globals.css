@@ -2885,23 +2885,48 @@ body.no-scroll {
 }
 
 .load-more-btn {
-    padding: 14px 28px !important;
-    border-radius: 10px !important;
-    border: 2px solid transparent !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    padding: 14px 36px !important;
+    min-width: 220px !important;
+    border-radius: 18px !important;
     cursor: pointer !important;
-    background: #1b1b1b !important;
-    color: #fff !important;
-    transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease !important;
-    font-size: 16px !important;
-    font-weight: bold !important;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.2px !important;
+    text-decoration: none !important;
+    color: #ffffff !important;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.05) 35%, rgba(0, 0, 0, 0.20) 100%), rgba(20, 20, 25, 0.80) !important;
+    -webkit-backdrop-filter: blur(12px) saturate(190%) contrast(110%) brightness(108%) !important;
+    backdrop-filter: blur(12px) saturate(190%) contrast(110%) brightness(108%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.24) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.52) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+    box-shadow: 
+      0 12px 28px -4px rgba(0, 0, 0, 0.32),
+      inset 0 1.5px 0 0 rgba(255, 255, 255, 0.65),
+      inset 0 -1px 0 0 rgba(0, 0, 0, 0.45),
+      inset 0 0 16px rgba(255, 255, 255, 0.05) !important;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .load-more-btn:hover {
-    background: #f5f5f5 !important;
-    border-color: #000 !important;
-    color: #1b1b1b !important;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2) !important;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.08) 35%, rgba(0, 0, 0, 0.12) 100%), rgba(32, 32, 40, 0.88) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.75) !important;
+    box-shadow: 
+      0 16px 36px -4px rgba(0, 0, 0, 0.42),
+      inset 0 1.5px 0 0 rgba(255, 255, 255, 0.85),
+      inset 0 -1px 0 0 rgba(0, 0, 0, 0.50),
+      inset 0 0 20px rgba(255, 255, 255, 0.10) !important;
+    transform: translateY(-2px) scale(1.02) !important;
+    color: #ffffff !important;
+}
+
+.load-more-btn:active {
+    transform: translateY(0) scale(0.98) !important;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3), inset 0 1px 0 0 rgba(255, 255, 255, 0.4) !important;
 }
 
 
