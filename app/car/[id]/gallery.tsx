@@ -113,7 +113,15 @@ export function Gallery({ images, name }: GalleryProps) {
     <>
       <div className="gallery">
 
-        <button className="prev" onClick={() => change(-1)}>
+        <button
+          type="button"
+          className="prev"
+          aria-label="Попереднє фото"
+          onClick={(e) => {
+            e.stopPropagation();
+            change(-1);
+          }}
+        >
           ❮
         </button>
 
@@ -126,9 +134,21 @@ export function Gallery({ images, name }: GalleryProps) {
           onClick={() => setLightbox(true)}
         />
 
-        <button className="next" onClick={() => change(1)}>
+        <button
+          type="button"
+          className="next"
+          aria-label="Наступне фото"
+          onClick={(e) => {
+            e.stopPropagation();
+            change(1);
+          }}
+        >
           ❯
         </button>
+
+        <div className="gallery-counter">
+          {current + 1} / {images.length}
+        </div>
 
       </div>
 
@@ -165,8 +185,13 @@ export function Gallery({ images, name }: GalleryProps) {
           </span>
 
           <button
+            type="button"
             className="light-prev"
-            onClick={() => change(-1)}
+            aria-label="Попереднє фото"
+            onClick={(e) => {
+              e.stopPropagation();
+              change(-1);
+            }}
           >
             ❮
           </button>
@@ -177,8 +202,13 @@ export function Gallery({ images, name }: GalleryProps) {
           />
 
           <button
+            type="button"
             className="light-next"
-            onClick={() => change(1)}
+            aria-label="Наступне фото"
+            onClick={(e) => {
+              e.stopPropagation();
+              change(1);
+            }}
           >
             ❯
           </button>

@@ -1730,27 +1730,58 @@ body.no-scroll {
     position: absolute !important;
     top: 50% !important;
     transform: translateY(-50%) !important;
-    background: #1111118a !important;
+    background: rgba(18, 18, 18, 0.75) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5) !important;
     color: white !important;
-    border: none !important;
-    padding: 15px 15px !important;
-    font-size: 24px !important;
+    padding: 0 !important;
+    width: 46px !important;
+    height: 46px !important;
+    font-size: 20px !important;
     cursor: pointer !important;
-    border-radius: 10px !important;
-    transition: 0.3s !important;
-    z-index: 10 !important;
-    width: auto !important;
-    height: auto !important;
-    display: block !important;
+    border-radius: 50% !important;
+    transition: all 0.2s ease !important;
+    z-index: 25 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    user-select: none !important;
 }
 .car-page .prev:hover,
 .car-page .next:hover {
-    background: #11 !important;
+    background: rgba(0, 0, 0, 0.95) !important;
     color: white !important;
+    border-color: rgba(255, 255, 255, 0.45) !important;
+    transform: translateY(-50%) scale(1.08) !important;
+}
+.car-page .prev:active,
+.car-page .next:active {
+    transform: translateY(-50%) scale(0.92) !important;
 }
 
-.car-page .prev { left: 10px !important; }
-.car-page .next { right: 10px !important; }
+.car-page .prev { left: 14px !important; }
+.car-page .next { right: 14px !important; }
+
+/* Photo counter badge */
+.car-page .gallery-counter {
+    position: absolute !important;
+    bottom: 14px !important;
+    right: 14px !important;
+    background: rgba(0, 0, 0, 0.65) !important;
+    backdrop-filter: blur(6px) !important;
+    -webkit-backdrop-filter: blur(6px) !important;
+    color: #ffffff !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    padding: 4px 12px !important;
+    border-radius: 20px !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    z-index: 15 !important;
+    pointer-events: none !important;
+    letter-spacing: 0.05em !important;
+}
 
 /* Gallery Thumbnails (With Horizontal Scroll Prevention) */
 .car-page .thumbs {
@@ -2059,15 +2090,14 @@ body.no-scroll {
 
     .car-page .prev,
     .car-page .next {
-       display: block !important;
+       display: flex !important;
+       width: 40px !important;
+       height: 40px !important;
+       font-size: 18px !important;
     }
 
-    @media (max-width: 600px) {
-        .car-page .prev,
-        .car-page .next {
-           display: none !important;
-        }
-    }
+    .car-page .prev { left: 8px !important; }
+    .car-page .next { right: 8px !important; }
 
     .car-page .thumbs {
         overflow-x: auto !important;
@@ -3888,6 +3918,50 @@ footer h3 {
   width: 100% !important;
   height: 1px !important;
   background: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Hero Credit Badge (Watermark) */
+.hero-credit {
+  position: absolute !important;
+  bottom: 18px !important;
+  right: 24px !important;
+  font-size: 13px !important;
+  color: rgba(255, 255, 255, 0.75) !important;
+  background: rgba(0, 0, 0, 0.55) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  padding: 6px 14px !important;
+  border-radius: 20px !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4) !important;
+  z-index: 5 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  pointer-events: auto !important;
+  transition: all 0.25s ease !important;
+  user-select: none !important;
+}
+
+.hero-credit strong {
+  color: #ffffff !important;
+  font-weight: 600 !important;
+}
+
+.hero-credit:hover {
+  background: rgba(0, 0, 0, 0.85) !important;
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.35) !important;
+  transform: translateY(-2px) !important;
+}
+
+@media (max-width: 768px) {
+  .hero-credit {
+    bottom: 12px !important;
+    right: 14px !important;
+    font-size: 11px !important;
+    padding: 4px 10px !important;
+  }
 }
 
 /* ============================================================

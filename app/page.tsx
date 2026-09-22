@@ -265,6 +265,10 @@ export default async function Home() {
               </div>
             </div>
           </div>
+
+          <div className="hero-credit">
+            <span>Designed &amp; Developed by <strong>Vynnytsky</strong></span>
+          </div>
         </section>
 
         <div id="catalog">
