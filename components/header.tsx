@@ -18,6 +18,18 @@ export function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (!isMenuOpen) return;
+    const handleClickOutside = (e: MouseEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (target && !target.closest('.header')) {
+        setIsMenuOpen(false);
+      }
+    };
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, [isMenuOpen]);
+
   const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
@@ -111,7 +123,7 @@ export function Header() {
         )}
       </div>
 
-      <button className="burger-btn" onClick={toggleMenu} aria-label="Toggle Menu">
+      <button className="burger-btn" onClick={toggleMenu} aria-label="Toggle Menu" aria-expanded={isMenuOpen}>
         <span className="burger-bar"></span>
         <span className="burger-bar"></span>
         <span className="burger-bar"></span>

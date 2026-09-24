@@ -2593,11 +2593,7 @@ body.no-scroll {
     display: none !important;
 }
 
-.burger-btn {
-    display: none !important;
-}
-
-/* ================= HEADER RESPONSIVENESS OVERRIDES (BREAKPOINT AT 1024PX) ================= */
+/* ================= HEADER TEXT RESPONSIVENESS (BREAKPOINT AT 1024PX) ================= */
 @media (max-width: 1024px) {
     /* Header Responsiveness Fixes */
     .d-text {
@@ -2605,92 +2601,6 @@ body.no-scroll {
     }
     .m-text {
         display: inline !important;
-    }
-    .header {
-        padding: 0 15px !important;
-        flex-direction: row !important;
-        align-items: center !important;
-        justify-content: space-between !important;
-        height: 60px !important;
-        position: relative !important;
-    }
-    .header-logo {
-        display: block !important;
-        width: 45px !important;
-        height: 45px !important;
-        object-fit: contain !important;
-    }
-    .header img {
-        display: block !important;
-        width: 45px !important;
-        height: 45px !important;
-        object-fit: contain !important;
-    }
-    .header-center {
-        position: absolute !important;
-        left: 50% !important;
-        top: 50% !important;
-        transform: translate(-50%, -50%) !important;
-        font-size: 22px !important;
-        margin: 0 !important;
-        transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1) !important;
-        opacity: 1 !important;
-        white-space: nowrap !important;
-    }
-    .header-nav {
-        position: absolute !important;
-        right: 55px !important;
-        top: 50% !important;
-        transform: translate(30px, -50%) !important;
-        opacity: 0 !important;
-        pointer-events: none !important;
-        display: flex !important;
-        align-items: center !important;
-        gap: 18px !important;
-        transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1) !important;
-    }
-    .header a {
-        margin: 0 !important;
-        font-size: 14px !important;
-        white-space: nowrap !important;
-    }
-    .header-account-link-old {
-        margin-left: 0 !important;
-    }
-    .burger-btn {
-        display: flex !important;
-        flex-direction: column !important;
-        justify-content: space-between !important;
-        width: 24px !important;
-        height: 16px !important;
-        background: transparent !important;
-        border: none !important;
-        cursor: pointer !important;
-        padding: 0 !important;
-        z-index: 1001 !important;
-        position: relative !important;
-    }
-    .burger-bar {
-        width: 100% !important;
-        height: 2px !important;
-        background-color: #fff !important;
-        transition: transform 0.3s ease, opacity 0.3s ease !important;
-        display: block !important;
-    }
-    /* Removed left-sliding header animation */
-    .header.menu-open .header-nav {
-        transform: translate(0, -50%) !important;
-        opacity: 1 !important;
-        pointer-events: auto !important;
-    }
-    .header.menu-open .burger-bar:nth-child(1) {
-        transform: translateY(7px) rotate(45deg) !important;
-    }
-    .header.menu-open .burger-bar:nth-child(2) {
-        opacity: 0 !important;
-    }
-    .header.menu-open .burger-bar:nth-child(3) {
-        transform: translateY(-7px) rotate(-45deg) !important;
     }
 }
 
@@ -4816,8 +4726,12 @@ footer {
   transition: all 0.3s ease !important;
 }
 
-/* Mobile responsive navigation */
-@media (max-width: 768px) {
+/* Mobile & Tablet responsive navigation (triggers immediately on tablet / small screen) */
+@media (max-width: 1024px) {
+  .header {
+    padding: 0 18px !important;
+  }
+
   .burger-btn {
     display: flex !important;
   }
@@ -4825,10 +4739,14 @@ footer {
   .header-logo {
     height: 44px !important;
   }
+
+  .header-center {
+    font-size: clamp(17px, 3vw, 20px) !important;
+  }
   
   .header-nav {
     position: absolute !important;
-    top: 76px !important;
+    top: 74px !important;
     right: 0 !important;
     width: 100% !important;
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.04) 35%, rgba(0, 0, 0, 0.25) 100%), rgba(20, 20, 25, 0.58) !important;
